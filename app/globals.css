@@ -6,23 +6,29 @@
    Design tokens
 ───────────────────────────────────────────── */
 :root {
-  --bg:           #FDF8F4;
-  --bg-2:         #F8F1EA;
-  --bg-3:         #F2E8DE;
-  --bg-dark:      #EAD9CC;
-  --fg:           #2D2926;
-  --fg-muted:     #5C4F47;
-  --fg-light:     #8B7D74;
-  --gold:         #C5A467;
-  --gold-hover:   #B8933A;
-  --gold-light:   #EAD9B8;
-  --gold-pale:    #F5EDDA;
-  --rose:         #C4967A;
-  --rose-light:   #F0DDD4;
-  --rose-pale:    #FAF1EC;
-  --border:       #E8DDD5;
-  --border-light: #F0E8E0;
+  --bg:           #FBF6EE;
+  --surface:      #FFFDF9;
+  --surface-warm: #F4E8D8;
+  --surface-2:    #FAF4ED;
+  --champagne:    #EDD9A3;
+  --primary:      #6E1F32;
+  --primary-dark: #3A0E19;
+  --gold:         #C7A15A;
+  --gold-soft:    #EAD9B5;
+  --gold-faint:   #F5ECD8;
+  --blush:        #EBC7C7;
+  --text-main:    #241714;
+  --text-muted:   #7B6760;
+  --border:       #E8D9C6;
+  --border-gold:  #DCC48A;
   --footer-bg:    #1E1916;
+
+  /* Legacy aliases */
+  --fg:           #241714;
+  --fg-muted:     #7B6760;
+  --fg-light:     #9E8880;
+  --border-light: #F0E0D0;
+  --bg-2:         #F4E8D8;
 
   /* --font-serif and --font-sans are injected by next/font as CSS variables */
 }
@@ -41,7 +47,7 @@ html {
 
 body {
   background: var(--bg);
-  color: var(--fg);
+  color: var(--text-main);
   font-family: var(--font-sans), "DM Sans", system-ui, sans-serif;
   line-height: 1.65;
   overflow-x: hidden;
@@ -52,7 +58,7 @@ body {
 ───────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--gold-soft); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
 /* ─────────────────────────────────────────────
@@ -84,8 +90,8 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, #C5A467 0%, #B8933A 100%);
-  color: #2D2926;
+  background: linear-gradient(135deg, #6E1F32 0%, #3A0E19 100%);
+  color: #fff;
   font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 600;
@@ -97,7 +103,7 @@ body {
   text-decoration: none;
   white-space: nowrap;
   transition: box-shadow 0.25s ease, transform 0.18s ease;
-  box-shadow: 0 4px 14px rgba(197,164,103,0.3);
+  box-shadow: 0 4px 14px rgba(110,31,50,0.3);
 }
 .btn-primary::after {
   content: "";
@@ -105,12 +111,12 @@ body {
   inset: 0;
   left: -120%;
   width: 55%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
   pointer-events: none;
   transition: left 0.65s ease;
 }
 .btn-primary:hover {
-  box-shadow: 0 8px 28px rgba(197,164,103,0.45);
+  box-shadow: 0 8px 28px rgba(199,161,90,0.45), 0 4px 14px rgba(110,31,50,0.25);
   transform: translateY(-1px);
 }
 .btn-primary:hover::after { left: 180%; }
@@ -121,34 +127,63 @@ body {
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  color: var(--fg);
+  color: var(--primary);
   font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 500;
   padding: 0.8125rem 1.875rem;
   border-radius: 100px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid var(--primary);
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
   transition: all 0.22s ease;
 }
 .btn-outline:hover {
-  border-color: var(--gold);
-  color: var(--gold-hover);
-  background: var(--gold-pale);
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  background: var(--surface-warm);
   transform: translateY(-1px);
 }
 .btn-outline:active { transform: translateY(0); }
+
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #C7A15A 0%, #B8923A 100%);
+  color: #241714;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.8125rem 1.875rem;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: box-shadow 0.25s ease, transform 0.18s ease;
+  box-shadow: 0 4px 14px rgba(199,161,90,0.35);
+}
+.btn-gold:hover {
+  box-shadow: 0 8px 28px rgba(199,161,90,0.55);
+  transform: translateY(-1px);
+}
+.btn-gold:active { transform: translateY(0); }
 
 /* ─────────────────────────────────────────────
    Section spacing
 ───────────────────────────────────────────── */
 .section {
-  padding: 5rem 1.25rem;
+  padding: 5.5rem 1.25rem;
   position: relative;
 }
-@media (min-width: 768px)  { .section { padding: 7.5rem 1.5rem; } }
+@media (min-width: 640px)  { .section { padding: 6rem 1.5rem; } }
+@media (min-width: 768px)  { .section { padding: 8rem 1.75rem; } }
+@media (min-width: 1024px) { .section { padding: 8.5rem 2rem; } }
 
 .section-inner {
   max-width: 1160px;
@@ -157,7 +192,7 @@ body {
 }
 .section-header {
   text-align: center;
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto 4rem;
 }
 @media (min-width: 768px) { .section-header { margin-bottom: 5rem; } }
@@ -237,7 +272,7 @@ body {
 /* ─────────────────────────────────────────────
    Input placeholder
 ───────────────────────────────────────────── */
-input::placeholder { color: var(--fg-light); opacity: 1; }
+input::placeholder { color: var(--text-muted); opacity: 1; }
 
 /* ─────────────────────────────────────────────
    WhatsApp chat bubble
@@ -265,17 +300,40 @@ input::placeholder { color: var(--fg-light); opacity: 1; }
 }
 
 /* ─────────────────────────────────────────────
-   Card base
+   Card warm (new premium card style)
+───────────────────────────────────────────── */
+.card-warm {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(110,31,50,0.06), 0 8px 32px rgba(110,31,50,0.04);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* ─────────────────────────────────────────────
+   Template card hover
+───────────────────────────────────────────── */
+.template-card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.template-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(110,31,50,0.14), 0 4px 16px rgba(110,31,50,0.08);
+  border-color: var(--gold) !important;
+}
+
+/* ─────────────────────────────────────────────
+   Legacy card (keep for compatibility)
 ───────────────────────────────────────────── */
 .card {
   background: white;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border);
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(45,41,38,0.06), 0 8px 32px rgba(45,41,38,0.07);
+  box-shadow: 0 2px 8px rgba(110,31,50,0.06), 0 8px 32px rgba(110,31,50,0.07);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .card:hover {
-  box-shadow: 0 8px 24px rgba(45,41,38,0.1), 0 20px 60px rgba(45,41,38,0.1);
+  box-shadow: 0 8px 24px rgba(110,31,50,0.1), 0 20px 60px rgba(110,31,50,0.1);
   transform: translateY(-3px);
 }
 
@@ -289,13 +347,46 @@ input::placeholder { color: var(--fg-light); opacity: 1; }
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.025;
+  opacity: 0.038;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
 
+/* Lighter grain for cards */
+.grain-card { position: relative; }
+.grain-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.022;
+  border-radius: inherit;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
 /* ─────────────────────────────────────────────
-   Bento grid helpers
+   Gold ornament divider
 ───────────────────────────────────────────── */
-@media (min-width: 768px) {
-  .bento-large { grid-column: span 2; }
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 40px;
+  background: var(--gold);
+  opacity: 0.45;
+}
+
+/* ─────────────────────────────────────────────
+   Gold border card
+───────────────────────────────────────────── */
+.card-gold-border {
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 0 0 1px rgba(199,161,90,0.08), 0 2px 12px rgba(110,31,50,0.06), 0 8px 32px rgba(110,31,50,0.04);
 }

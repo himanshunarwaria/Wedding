@@ -1,83 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { RefreshCw, Hand, Music, CalendarDays, Clock, Smartphone } from "lucide-react";
+import { DollarSign, Users, Image, RefreshCw, Heart, Shield } from "lucide-react";
+import { features } from "@/data/features";
 
-interface BentoFeature {
-  id: string;
-  icon: React.ElementType;
-  title: string;
-  description: string;
-  large?: boolean;
-  accent?: string;
-}
-
-const bentoFeatures: BentoFeature[] = [
-  {
-    id: "updates",
-    icon: RefreshCw,
-    title: "Your invite, always up to date",
-    description:
-      "Changed the venue? New event added? Update once — and every guest who opens your link sees the latest details instantly. No reprints, no re-sharing.",
-    large: true,
-    accent: "#C5A467",
-  },
-  {
-    id: "rsvp",
-    icon: Hand,
-    title: "RSVP in one tap",
-    description:
-      "Guests confirm attendance with a single tap. All responses collected in your dashboard — no spreadsheets, no WhatsApp chasing.",
-    large: true,
-    accent: "#C4967A",
-  },
-  {
-    id: "music",
-    icon: Music,
-    title: "Background music",
-    description: "Upload your favourite song or shehnai track to play as guests scroll.",
-    accent: "#8B7D74",
-  },
-  {
-    id: "events",
-    icon: CalendarDays,
-    title: "6+ events, one link",
-    description: "Mehendi, Sangeet, Haldi, Wedding, Reception — all on one invite.",
-    accent: "#8B7D74",
-  },
-  {
-    id: "speed",
-    icon: Clock,
-    title: "Ready in 60 minutes",
-    description: "Fill in the details, preview, publish. No design or tech skills needed.",
-    accent: "#8B7D74",
-  },
-  {
-    id: "mobile",
-    icon: Smartphone,
-    title: "Mobile-first design",
-    description: "Every template looks stunning on any device, built for smartphones first.",
-    accent: "#8B7D74",
-  },
-];
+const featureIcons = [DollarSign, Users, Image, RefreshCw, Heart, Shield];
 
 export default function Features() {
   return (
-    <section id="features" className="section" style={{ background: "var(--bg)" }}>
+    <section id="features" className="section grain" style={{ background: "var(--bg)" }}>
       <div className="section-inner">
 
         {/* Header */}
         <div className="section-header">
           <motion.p
+            className="eyebrow mb-4"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="eyebrow mb-4"
           >
-            Why InviteBliss
+            Features
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -86,87 +31,99 @@ export default function Features() {
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               fontWeight: 400,
               lineHeight: 1.1,
-              color: "var(--fg)",
-              marginBottom: "1.25rem",
+              color: "var(--primary)",
+              marginBottom: "0.875rem",
             }}
           >
-            Everything your wedding invite should do
+            The Wedding Invite, Reinvented.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.18 }}
-            style={{ fontSize: "1.0625rem", color: "var(--fg-muted)" }}
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "1.0625rem",
+              color: "var(--text-muted)",
+              marginBottom: "1.75rem",
+            }}
           >
-            More flexible than printed cards. Smarter than a video invite.
+            Mobile-first, effortless to share, and more flexible than printed cards or WhatsApp videos.
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.28 }}
+          >
+            <button
+              className="btn-outline"
+              style={{ fontSize: "0.875rem", padding: "0.625rem 1.5rem" }}
+              onClick={() =>
+                document.querySelector("#templates")?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              Choose a template →
+            </button>
+          </motion.div>
         </div>
 
-        {/* Bento grid */}
-        <div className="grid md:grid-cols-4 gap-4">
-          {bentoFeatures.map((f, i) => {
-            const Icon = f.icon;
-            const isLarge = f.large;
+        {/* Feature cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {features.map((feature, i) => {
+            const Icon = featureIcons[i] || DollarSign;
             return (
               <motion.div
-                key={f.id}
-                initial={{ opacity: 0, y: 20 }}
+                key={feature.id}
+                className="card-warm grain-card"
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
-                transition={{ delay: i * 0.06, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className={isLarge ? "bento-large" : ""}
+                transition={{ delay: i * 0.07, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                  background: "white",
-                  border: "1px solid var(--border-light)",
-                  borderRadius: 20,
-                  padding: isLarge ? "2rem" : "1.5rem",
-                  boxShadow: "0 2px 8px rgba(45,41,38,0.05), 0 8px 24px rgba(45,41,38,0.04)",
-                  transition: "box-shadow 0.3s ease, transform 0.3s ease",
-                  cursor: "default",
-                  position: "relative",
-                  overflow: "hidden",
+                  padding: "2rem",
+                  border: "1px solid var(--border-gold)",
+                  boxShadow: "0 2px 12px rgba(110,31,50,0.05), 0 8px 28px rgba(110,31,50,0.04)",
                 }}
-                whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(45,41,38,0.09), 0 20px 48px rgba(45,41,38,0.07)" }}
               >
-                {/* Icon */}
+                {/* Icon — gold ring */}
                 <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                  style={{ background: `${f.accent}14` }}
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
+                  style={{
+                    background: "var(--gold-faint)",
+                    border: "1px solid var(--border-gold)",
+                  }}
                 >
-                  <Icon size={18} style={{ color: f.accent }} />
+                  <Icon size={20} style={{ color: "var(--primary)" }} />
                 </div>
 
                 <h3
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: isLarge ? "1.125rem" : "0.9375rem",
+                    fontSize: "1rem",
                     fontWeight: 600,
-                    color: "var(--fg)",
+                    color: "var(--text-main)",
                     marginBottom: "0.5rem",
-                    lineHeight: 1.3,
+                    lineHeight: 1.35,
                   }}
                 >
-                  {f.title}
+                  {feature.title}
                 </h3>
                 <p
                   style={{
                     fontFamily: "var(--font-sans)",
                     fontSize: "0.875rem",
-                    color: "var(--fg-muted)",
-                    lineHeight: 1.65,
+                    color: "var(--text-muted)",
+                    lineHeight: 1.6,
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
                   }}
                 >
-                  {f.description}
+                  {feature.description}
                 </p>
-
-                {/* Decorative corner for large cards */}
-                {isLarge && (
-                  <div
-                    className="absolute -bottom-8 -right-8 w-28 h-28 rounded-full pointer-events-none"
-                    style={{ background: `${f.accent}08` }}
-                  />
-                )}
               </motion.div>
             );
           })}

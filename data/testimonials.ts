@@ -78,4 +78,26 @@ export const testimonials: Testimonial[] = [
     avatarBg: "bg-orange-100",
     templateUsed: "Saajan",
   },
+  {
+    id: "7",
+    initials: "AK",
+    name: "Aisha & Kabir",
+    role: "Married in Delhi",
+    quote:
+      "Noor template was absolutely stunning. Our overseas family felt connected to every event through the invite. The Arabic font and gold design left everyone speechless.",
+    stars: 5,
+    avatarBg: "bg-purple-100",
+    templateUsed: "Noor",
+  },
+  {
+    id: "8",
+    initials: "VR",
+    name: "Vidya & Rajan",
+    role: "Married in Coimbatore",
+    quote:
+      "Amara captured South Indian tradition perfectly. The kolam motifs, the color palette — our families said it was the most beautiful invite they had ever seen.",
+    stars: 5,
+    avatarBg: "bg-yellow-100",
+    templateUsed: "Amara",
+  },
 ];

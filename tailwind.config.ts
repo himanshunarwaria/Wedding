@@ -10,30 +10,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        /* ── Core backgrounds ── */
-        "ivory":        "#FDF8F4",
-        "ivory-2":      "#F8F1EA",
-        "ivory-3":      "#F2E8DE",
-        "ivory-dark":   "#EAD9CC",
-        /* ── Text ── */
-        "charcoal":     "#2D2926",
-        "charcoal-muted":"#5C4F47",
-        "charcoal-light":"#8B7D74",
-        /* ── Accents ── */
-        "gold":         "#C5A467",
-        "gold-hover":   "#B8933A",
-        "gold-light":   "#EAD9B8",
-        "gold-pale":    "#F5EDDA",
-        /* ── Rose ── */
-        "rose":         "#C4967A",
-        "rose-light":   "#F0DDD4",
-        "rose-pale":    "#FAF1EC",
-        /* ── UI ── */
-        "border-warm":  "#E8DDD5",
-        "border-light": "#F0E8E0",
-        /* ── Footer ── */
+        /* ── New premium palette ── */
+        "bg":           "#FBF5EC",
+        "surface":      "#FFFDF8",
+        "surface-warm": "#F4E6D6",
+        "primary":      "#6E1F32",
+        "primary-dark": "#3A0E19",
+        "gold":         "#C7A15A",
+        "gold-soft":    "#E9D8B4",
+        "blush":        "#EBC7C7",
+        "text-main":    "#241714",
+        "text-muted":   "#7B6760",
+        "border-warm":  "#E8D8C8",
         "footer-bg":    "#1E1916",
-        "footer-surface":"#2A2420",
+        /* ── Legacy aliases (keep for StickyBar) ── */
+        "footer-surface": "#2A2420",
       },
       fontFamily: {
         serif: ["var(--font-serif)", "Playfair Display", "Georgia", "serif"],
@@ -49,18 +40,18 @@ const config: Config = {
         "section-sm": "5rem",
       },
       borderRadius: {
-        "card":  "16px",
-        "card-lg":"24px",
-        "phone": "40px",
+        "card":    "16px",
+        "card-lg": "24px",
+        "phone":   "40px",
       },
       boxShadow: {
-        "card":     "0 2px 8px rgba(45,41,38,0.06), 0 8px 32px rgba(45,41,38,0.07)",
-        "card-hover":"0 8px 24px rgba(45,41,38,0.1), 0 20px 60px rgba(45,41,38,0.1)",
-        "phone":    "0 2px 8px rgba(0,0,0,0.3), 0 20px 60px rgba(0,0,0,0.25), 0 40px 100px rgba(0,0,0,0.15)",
-        "phone-lg": "0 4px 12px rgba(0,0,0,0.35), 0 30px 80px rgba(0,0,0,0.3), 0 60px 120px rgba(0,0,0,0.15)",
-        "btn":      "0 4px 14px rgba(197,164,103,0.3)",
-        "btn-hover":"0 8px 28px rgba(197,164,103,0.45)",
-        "sticky":   "0 -4px 24px rgba(45,41,38,0.12)",
+        "card":      "0 2px 8px rgba(110,31,50,0.06), 0 8px 32px rgba(110,31,50,0.07)",
+        "card-hover":"0 8px 24px rgba(110,31,50,0.1), 0 20px 60px rgba(110,31,50,0.1)",
+        "phone":     "0 2px 8px rgba(0,0,0,0.3), 0 20px 60px rgba(0,0,0,0.25), 0 40px 100px rgba(0,0,0,0.15)",
+        "phone-lg":  "0 4px 12px rgba(0,0,0,0.35), 0 30px 80px rgba(0,0,0,0.3), 0 60px 120px rgba(0,0,0,0.15)",
+        "btn":       "0 4px 14px rgba(199,161,90,0.3)",
+        "btn-hover": "0 8px 28px rgba(199,161,90,0.45)",
+        "sticky":    "0 -4px 24px rgba(36,23,20,0.12)",
       },
       animation: {
         "marquee":     "marquee 32s linear infinite",

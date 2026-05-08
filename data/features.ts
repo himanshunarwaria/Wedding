@@ -2,52 +2,45 @@
 
 export interface Feature {
   id: string;
-  icon: string; /* lucide icon name */
   title: string;
   description: string;
 }
 
 export const features: Feature[] = [
   {
-    id: "mobile",
-    icon: "Smartphone",
-    title: "Mobile-first experience",
+    id: "cost",
+    title: "A fraction of printed-card costs",
     description:
-      "Every template is pixel-perfect on mobile. Guests open your link on any device and see a flawless invitation.",
+      "Premium invite experience without the ₹15,000+ printing bill. One price, all guests.",
   },
   {
-    id: "editing",
-    icon: "Pencil",
-    title: "Easy editing",
+    id: "elder",
+    title: "Clear for every guest",
     description:
-      "No design skills needed. Fill in a simple form — names, dates, venue, love story — and watch your invite come alive.",
+      "Large text, high-contrast design. Easy for elderly relatives to open and read.",
   },
   {
-    id: "updates",
-    icon: "RefreshCw",
-    title: "Instant updates",
+    id: "pre",
+    title: "Pre-wedding highlight reel",
     description:
-      "Venue changed? New sub-event added? Update once and everyone with your link sees the latest details immediately.",
+      "Showcase photos, your love story, all events, and memories — all in one beautiful website.",
   },
   {
-    id: "rsvp",
-    icon: "MapPin",
-    title: "RSVP and map links",
+    id: "edit",
+    title: "Instant edits, live everywhere",
     description:
-      "Embed Google Maps for every venue and collect RSVPs digitally. No more chasing confirmations over WhatsApp.",
+      "Changed the venue or time? Update once and every guest sees the latest version instantly.",
   },
   {
-    id: "sharing",
-    icon: "Share2",
-    title: "Event-wise guest sharing",
+    id: "ritual",
+    title: "Built for Indian rituals",
     description:
-      "Generate separate links for Mehendi, Sangeet, or Reception. Share only relevant events with the right guests.",
+      "Mehendi, Sangeet, Haldi, Baraat, Wedding, Reception — all events on one link.",
   },
   {
-    id: "media",
-    icon: "Music",
-    title: "Photo and music support",
+    id: "private",
+    title: "Private event pages",
     description:
-      "Add a couple photo gallery and a background melody that plays softly as guests scroll through your invite.",
+      "Share only the relevant events with each guest group. One invite, multiple views.",
   },
 ];

@@ -17,10 +17,10 @@ const footerLinks = {
     { label: "Save the Date",     href: "#templates" },
   ],
   Product: [
-    { label: "Features",          href: "#features"     },
-    { label: "How It Works",      href: "#how-it-works" },
-    { label: "Pricing",           href: "#templates"    },
-    { label: "FAQ",               href: "#faq"          },
+    { label: "Features",     href: "#features"     },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Pricing",      href: "#templates"    },
+    { label: "FAQ",          href: "#faq"          },
   ],
   Company: [
     { label: "About",          href: "#"                   },
@@ -46,12 +46,17 @@ export default function Footer() {
   return (
     <footer
       className="relative overflow-hidden"
-      style={{ background: "linear-gradient(170deg, #2A2420 0%, #1E1916 100%)" }}
+      style={{ background: "linear-gradient(170deg, #2A1218 0%, var(--footer-bg) 100%)" }}
     >
-      {/* Top wave */}
+      {/* Top wave — fill from surface-warm */}
       <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ lineHeight: 0 }}>
-        <svg viewBox="0 0 1440 56" preserveAspectRatio="none" className="w-full block" style={{ height: 56 }}>
-          <path d="M0,56 C480,0 960,56 1440,0 L1440,0 L0,0 Z" fill="var(--bg-2)" />
+        <svg
+          viewBox="0 0 1440 56"
+          preserveAspectRatio="none"
+          className="w-full block"
+          style={{ height: 56 }}
+        >
+          <path d="M0,56 C480,0 960,56 1440,0 L1440,0 L0,0 Z" fill="var(--surface-warm)" />
         </svg>
       </div>
 
@@ -69,60 +74,74 @@ export default function Footer() {
           <div className="col-span-2 lg:col-span-2">
             <a
               href="#"
-              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-              className="flex items-center gap-2 mb-3"
-              style={{
-                color: "white",
-                fontFamily: "var(--font-serif)",
-                fontSize: "1.25rem",
-                fontWeight: 500,
-                textDecoration: "none",
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
               }}
+              className="flex items-center gap-2 mb-4"
+              style={{ textDecoration: "none" }}
             >
-              <Sparkles size={17} style={{ color: "#C5A467" }} />
-              {BRAND}
+              <Sparkles size={17} style={{ color: "var(--gold)" }} />
+              <span
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "1.3125rem",
+                  fontWeight: 600,
+                  color: "white",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {BRAND}
+              </span>
             </a>
             <p
-              className="mb-2 italic"
+              className="italic mb-3"
               style={{
-                color: "rgba(255,255,255,0.4)",
+                color: "rgba(255,255,255,0.45)",
                 fontSize: "0.875rem",
                 fontFamily: "var(--font-serif)",
                 fontWeight: 300,
-                lineHeight: 1.6,
+                lineHeight: 1.65,
               }}
             >
               {TAGLINE}
             </p>
-            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.8125rem" }}>
-              <a
-                href={`mailto:${EMAIL}`}
-                style={{ color: "rgba(197,164,103,0.7)", textDecoration: "none", transition: "opacity 0.15s ease" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.7"; }}
-              >
-                {EMAIL}
-              </a>
-            </p>
+            <a
+              href={`mailto:${EMAIL}`}
+              style={{
+                color: "var(--gold)",
+                fontSize: "0.8125rem",
+                textDecoration: "none",
+                opacity: 0.8,
+                transition: "opacity 0.15s ease",
+                fontFamily: "var(--font-sans)",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.8"; }}
+            >
+              {EMAIL}
+            </a>
 
-            {/* Social */}
+            {/* Social icons */}
             <div className="flex items-center gap-2.5 mt-6">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200"
+                  className="w-9 h-9 rounded-xl flex items-center justify-center"
                   style={{
                     background: "rgba(255,255,255,0.06)",
                     border: "1px solid rgba(255,255,255,0.1)",
                     color: "rgba(255,255,255,0.45)",
+                    transition: "all 0.2s ease",
+                    textDecoration: "none",
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.background = "#C5A467";
-                    el.style.borderColor = "#C5A467";
-                    el.style.color = "#2D2926";
+                    el.style.background = "var(--gold)";
+                    el.style.borderColor = "var(--gold)";
+                    el.style.color = "var(--text-main)";
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLAnchorElement;
@@ -143,16 +162,17 @@ export default function Footer() {
               <p
                 className="mb-4"
                 style={{
-                  color: "rgba(255,255,255,0.45)",
+                  color: "rgba(255,255,255,0.4)",
                   fontSize: "0.6875rem",
                   fontWeight: 600,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
+                  fontFamily: "var(--font-sans)",
                 }}
               >
                 {heading}
               </p>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2.5" style={{ listStyle: "none", margin: 0, padding: 0 }}>
                 {links.map((link) => (
                   <li key={link.label}>
                     <a
@@ -168,9 +188,14 @@ export default function Footer() {
                         fontSize: "0.875rem",
                         textDecoration: "none",
                         transition: "color 0.15s ease",
+                        fontFamily: "var(--font-sans)",
                       }}
-                      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#C5A467"; }}
-                      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.38)"; }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.color = "var(--gold)";
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.38)";
+                      }}
                     >
                       {link.label}
                     </a>
@@ -186,16 +211,26 @@ export default function Footer() {
           className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6"
           style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
-          <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.75rem" }}>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.25)",
+              fontSize: "0.75rem",
+              fontFamily: "var(--font-sans)",
+            }}
+          >
             &copy; {YEAR} {BRAND}. All rights reserved.
           </p>
           <p
             className="flex items-center gap-1.5"
-            style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.75rem" }}
+            style={{
+              color: "rgba(255,255,255,0.22)",
+              fontSize: "0.75rem",
+              fontFamily: "var(--font-sans)",
+            }}
           >
             Made with{" "}
-            <Heart size={10} style={{ color: "#C5A467", fill: "#C5A467" }} />{" "}
-            for every couple&rsquo;s big day
+            <Heart size={10} style={{ color: "var(--gold)", fill: "var(--gold)" }} />{" "}
+            for every couple
           </p>
         </div>
       </div>

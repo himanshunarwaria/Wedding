@@ -3,62 +3,149 @@
 import { motion } from "framer-motion";
 import { testimonials } from "@/data/testimonials";
 
-/* ── WhatsApp-style chat card ── */
-const WaCard = ({ t }: { t: (typeof testimonials)[0] }) => (
-  <div
-    className="flex-shrink-0 w-[300px] sm:w-[320px] rounded-2xl overflow-hidden"
-    style={{
-      background: "#ECE5DD",
-      boxShadow: "0 2px 12px rgba(45,41,38,0.1), 0 8px 32px rgba(45,41,38,0.07)",
-    }}
-  >
-    {/* WA Header */}
+function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
+  return (
     <div
-      className="flex items-center gap-2.5 px-3.5 py-2.5"
-      style={{ background: "#128C7E" }}
+      className="flex-shrink-0"
+      style={{
+        width: 318,
+        background: "white",
+        borderRadius: 18,
+        overflow: "hidden",
+        border: "1px solid var(--border-gold)",
+        boxShadow: "0 2px 12px rgba(110,31,50,0.07), 0 8px 32px rgba(110,31,50,0.05)",
+      }}
     >
+      {/* Screenshot-style app header */}
       <div
-        className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[11px] font-semibold flex-shrink-0"
-        style={{ background: "rgba(255,255,255,0.22)", fontFamily: "var(--font-sans)" }}
+        style={{
+          background: "linear-gradient(135deg, var(--primary), var(--primary-dark))",
+          padding: "0.75rem 1rem",
+          display: "flex",
+          alignItems: "center",
+          gap: "0.625rem",
+        }}
       >
-        {t.initials}
-      </div>
-      <div className="min-w-0">
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.8125rem", fontWeight: 600, color: "white", lineHeight: 1.2 }}>
-          {t.name}
-        </p>
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.6875rem", color: "rgba(255,255,255,0.72)", lineHeight: 1 }}>
-          online
-        </p>
-      </div>
-    </div>
+        {/* Avatar */}
+        <div
+          style={{
+            width: 36,
+            height: 36,
+            borderRadius: "50%",
+            background: "rgba(255,255,255,0.15)",
+            border: "1.5px solid rgba(199,161,90,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              color: "var(--gold)",
+            }}
+          >
+            {t.initials}
+          </span>
+        </div>
 
-    {/* Chat body */}
-    <div className="px-3.5 py-4">
-      <div className="wa-bubble">
-        <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.9rem", color: "#111b21", lineHeight: 1.55 }}>
+        {/* Name + role */}
+        <div className="flex-1 min-w-0">
+          <p
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.9375rem",
+              fontWeight: 600,
+              color: "white",
+              lineHeight: 1.2,
+            }}
+          >
+            {t.name}
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.6875rem",
+              color: "rgba(255,255,255,0.62)",
+              lineHeight: 1,
+              marginTop: 2,
+            }}
+          >
+            {t.role}
+          </p>
+        </div>
+
+        {/* Stars */}
+        <div className="flex gap-0.5 flex-shrink-0">
+          {Array.from({ length: t.stars }).map((_, i) => (
+            <span key={i} style={{ color: "var(--gold)", fontSize: "0.6875rem" }}>
+              ★
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Quote body */}
+      <div
+        style={{
+          padding: "1.125rem 1.25rem 1rem",
+          background: "white",
+        }}
+      >
+        {/* Large decorative quote */}
+        <div
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "3rem",
+            lineHeight: 0.6,
+            color: "var(--gold-soft)",
+            marginBottom: "0.5rem",
+            userSelect: "none",
+          }}
+          aria-hidden
+        >
+          "
+        </div>
+
+        <p
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontStyle: "italic",
+            fontSize: "0.9rem",
+            color: "var(--text-main)",
+            lineHeight: 1.68,
+            marginBottom: "1rem",
+          }}
+        >
           {t.quote}
         </p>
-        <div className="flex items-center justify-between mt-2 gap-2">
-          <span style={{ fontFamily: "var(--font-sans)", fontSize: "0.6875rem", color: "#667781" }}>
-            {t.templateUsed} template
-          </span>
-          <span style={{ fontSize: "0.6875rem", color: "#53BDEB" }}>✓✓</span>
+
+        {/* Template badge */}
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.375rem",
+            background: "var(--gold-faint)",
+            border: "1px solid var(--border-gold)",
+            borderRadius: 100,
+            padding: "0.2rem 0.75rem",
+            fontFamily: "var(--font-sans)",
+            fontSize: "0.6875rem",
+            fontWeight: 600,
+            color: "#8B5E1A",
+            letterSpacing: "0.04em",
+          }}
+        >
+          ✦ {t.templateUsed}
         </div>
       </div>
     </div>
-
-    {/* Footer */}
-    <div
-      className="px-3.5 pb-3"
-      style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}
-    >
-      <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", color: "#5C4F47", paddingTop: "0.625rem" }}>
-        — {t.name}, <span style={{ color: "#8B7D74" }}>{t.role}</span>
-      </p>
-    </div>
-  </div>
-);
+  );
+}
 
 const doubled = [...testimonials, ...testimonials];
 
@@ -66,21 +153,22 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="section overflow-hidden"
-      style={{ background: "var(--bg-2)" }}
+      className="section grain overflow-hidden"
+      style={{ background: "var(--surface-warm)" }}
     >
-      <div className="section-inner mb-12">
+      {/* Header */}
+      <div className="section-inner mb-14">
         <div className="section-header" style={{ marginBottom: 0 }}>
           <motion.p
+            className="eyebrow mb-4"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="eyebrow mb-4"
           >
             Testimonials
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -89,20 +177,24 @@ export default function Testimonials() {
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               fontWeight: 400,
               lineHeight: 1.1,
-              color: "var(--fg)",
-              marginBottom: "1.25rem",
+              color: "var(--primary)",
+              marginBottom: "0.875rem",
             }}
           >
-            Couples who loved their invite
+            Couples love sharing one beautiful link.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.18 }}
-            style={{ fontSize: "1.0625rem", color: "var(--fg-muted)" }}
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "1.0625rem",
+              color: "var(--text-muted)",
+            }}
           >
-            Real reviews from real couples across India.
+            Real couples. Real invites. One unforgettable link.
           </motion.p>
         </div>
       </div>
@@ -117,22 +209,23 @@ export default function Testimonials() {
       >
         <div className="marquee-track" style={{ gap: "1.25rem" }}>
           {doubled.map((t, i) => (
-            <WaCard key={`r1-${i}`} t={t} />
+            <TestimonialCard key={`r1-${i}`} t={t} />
           ))}
         </div>
       </motion.div>
 
-      {/* Marquee row 2 (reverse) */}
+      {/* Marquee row 2 — reverse */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.12 }}
         className="marquee-wrapper pt-5"
+        style={{ "--marquee-duration": "24s" } as React.CSSProperties}
       >
         <div className="marquee-track-rev" style={{ gap: "1.25rem" }}>
           {[...doubled].reverse().map((t, i) => (
-            <WaCard key={`r2-${i}`} t={t} />
+            <TestimonialCard key={`r2-${i}`} t={t} />
           ))}
         </div>
       </motion.div>
