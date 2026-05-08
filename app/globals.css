@@ -235,6 +235,11 @@ body {
 }
 
 /* ─────────────────────────────────────────────
+   Input placeholder
+───────────────────────────────────────────── */
+input::placeholder { color: var(--fg-light); opacity: 1; }
+
+/* ─────────────────────────────────────────────
    WhatsApp chat bubble
 ───────────────────────────────────────────── */
 .wa-bubble {
@@ -256,6 +261,7 @@ body {
   height: 0;
   border-right: 8px solid #fff;
   border-bottom: 8px solid transparent;
+  z-index: 1;
 }
 
 /* ─────────────────────────────────────────────

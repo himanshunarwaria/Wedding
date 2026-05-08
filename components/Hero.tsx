@@ -111,7 +111,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] flex items-center overflow-hidden pt-[66px] grain"
+      className="relative overflow-hidden pt-[66px] pb-10 lg:min-h-[100svh] lg:flex lg:items-center grain"
       style={{
         background: "radial-gradient(ellipse 120% 90% at 70% 60%, #F2E8DE 0%, #F8F1EA 40%, #FDF8F4 75%)",
       }}
@@ -126,8 +126,8 @@ export default function Hero() {
         style={{ background: "radial-gradient(circle, #F0DDD4 0%, transparent 70%)", opacity: 0.4 }}
       />
 
-      <div className="section-inner relative z-10 py-16 lg:py-0">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-6 items-center min-h-[calc(100svh-66px)]">
+      <div className="section-inner relative z-10 pt-10 pb-4 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-6 items-center lg:min-h-[calc(100svh-66px)]">
 
           {/* LEFT: Copy */}
           <div className="flex flex-col items-center lg:items-start gap-6 text-center lg:text-left">
@@ -242,8 +242,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative flex flex-col gap-4 overflow-hidden"
-            style={{ height: PHONE_H * 2 + 40 }}
+            className="relative flex flex-col gap-4 overflow-hidden h-[320px] lg:h-[660px]"
           >
             {/* Top marquee row */}
             <div className="marquee-wrapper">
@@ -266,8 +265,8 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Bottom marquee row (reverse) */}
-            <div className="marquee-wrapper">
+            {/* Bottom marquee row (reverse) — hidden on mobile */}
+            <div className="marquee-wrapper hidden lg:block">
               <div className="marquee-track-rev" style={{ gap: "1.25rem" }}>
                 {[...doubled].reverse().map((p, i) => (
                   <div
