@@ -1,489 +1,794 @@
 "use client";
 
 import { useState } from "react";
+import { Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { templates, categories, type Category } from "@/data/templates";
 
-/* ──────────────────────────────────────────────────────────────────
-   Mini phone screen for template cards
-────────────────────────────────────────────────────────────────── */
-function TemplatePhoneScreen({
-  screenBg,
-  screenAccent,
-  screenText,
-  tagline,
+/* ─────────────────────────────────────────────────────────────────
+   Inline data
+───────────────────────────────────────────────────────────────── */
+type ShowcaseCategory =
+  | "All"
+  | "Hindu Weddings"
+  | "Christian Weddings"
+  | "Sikh Weddings"
+  | "Muslim Weddings"
+  | "South-Indian Weddings"
+  | "Save the date";
+
+const CATEGORIES: ShowcaseCategory[] = [
+  "All",
+  "Hindu Weddings",
+  "Christian Weddings",
+  "Sikh Weddings",
+  "Muslim Weddings",
+  "South-Indian Weddings",
+  "Save the date",
+];
+
+const SHOWCASE_TEMPLATES = [
+  {
+    id: "city",
+    name: "City",
+    category: "Hindu Weddings" as ShowcaseCategory,
+    price: "INR 3999",
+    description:
+      "Perfect for Hindu weddings — effortless to edit, share. Designed to feel completely yours.",
+    previewBg: "linear-gradient(150deg, #E8C07A 0%, #C47028 60%, #9A3E18 100%)",
+    previewAccent: "#FFF2D0",
+    previewText: "#FFF8F0",
+  },
+  {
+    id: "beach",
+    name: "Beach",
+    category: "Hindu Weddings" as ShowcaseCategory,
+    price: "INR 3999",
+    description:
+      "Perfect for Hindu weddings — effortless to edit, share. Designed to feel completely yours.",
+    previewBg: "linear-gradient(170deg, #F5C870 0%, #E87828 50%, #C44818 100%)",
+    previewAccent: "#FFE4B0",
+    previewText: "#FFF4E0",
+  },
+  {
+    id: "mountain",
+    name: "Mountain",
+    category: "Hindu Weddings" as ShowcaseCategory,
+    price: "INR 3999",
+    description:
+      "Perfect for Hindu weddings — effortless to edit, share. Designed to feel completely yours.",
+    previewBg: "linear-gradient(170deg, #0A1628 0%, #142042 50%, #1A2850 100%)",
+    previewAccent: "#C9A45C",
+    previewText: "#EAD5A5",
+  },
+] as const;
+
+type ShowcaseTemplate = (typeof SHOWCASE_TEMPLATES)[number];
+
+/* ─────────────────────────────────────────────────────────────────
+   PreviewDecor — unique decorative SVG per template id
+───────────────────────────────────────────────────────────────── */
+function PreviewDecor({
+  id,
+  accent,
 }: {
-  screenBg: string;
-  screenAccent: string;
-  screenText: string;
-  tagline: string;
+  id: string;
+  accent: string;
 }) {
-  return (
-    <div
-      className="absolute inset-0 flex flex-col items-center px-3 pb-4"
-      style={{ background: screenBg, paddingTop: 36 }}
-    >
-      {/* Status bar */}
-      <div
-        className="absolute top-2 left-3 right-3 flex justify-between"
-        style={{
-          fontSize: 6,
-          color: screenText,
-          opacity: 0.45,
-          fontFamily: "var(--font-sans)",
-        }}
-      >
-        <span>9:41</span>
-        <span>●●●</span>
-      </div>
-
-      {/* Top rule */}
-      <div className="flex items-center gap-1 w-full mb-2">
-        <div className="flex-1 h-px" style={{ background: `${screenAccent}28` }} />
-        <svg viewBox="0 0 8 8" fill="none" style={{ width: 7, height: 7, flexShrink: 0 }}>
-          <rect
-            x="4" y="0" width="5" height="5" rx="0.3"
-            fill={screenAccent} opacity="0.42"
-            transform="rotate(45 4 4)"
-          />
-        </svg>
-        <div className="flex-1 h-px" style={{ background: `${screenAccent}28` }} />
-      </div>
-
-      {/* Tagline */}
-      <p
-        style={{
-          fontSize: 6,
-          letterSpacing: "0.14em",
-          color: screenAccent,
-          opacity: 0.65,
-          textTransform: "uppercase",
-          marginBottom: 8,
-          fontFamily: "var(--font-sans)",
-        }}
-      >
-        {tagline}
-      </p>
-
-      {/* Mandala ornament */}
+  if (id === "city") {
+    // 4 paper lanterns hanging from the top
+    const lanterns = [
+      { x: 28, stringLen: 18, bodyH: 20 },
+      { x: 72, stringLen: 14, bodyH: 22 },
+      { x: 116, stringLen: 20, bodyH: 18 },
+      { x: 164, stringLen: 12, bodyH: 22 },
+    ];
+    return (
       <svg
-        viewBox="0 0 28 28"
+        viewBox="0 0 200 100"
         fill="none"
-        style={{ width: 24, height: 24, marginBottom: 8 }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "55%",
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
       >
-        {[0, 60, 120, 180, 240, 300].map((a) => {
-          const r = (a * Math.PI) / 180;
-          const cx = 14 + 6 * Math.cos(r);
-          const cy = 14 + 6 * Math.sin(r);
+        {lanterns.map((l, i) => {
+          const topY = 0;
+          const bodyY = l.stringLen;
+          const bodyRx = 7;
+          const bodyRy = l.bodyH / 2;
           return (
-            <ellipse
-              key={a}
-              cx={cx}
-              cy={cy}
-              rx="2.8"
-              ry="1.6"
-              fill={screenAccent}
-              opacity="0.32"
-              transform={`rotate(${a} ${cx} ${cy})`}
-            />
+            <g key={i}>
+              {/* string */}
+              <line
+                x1={l.x}
+                y1={topY}
+                x2={l.x}
+                y2={bodyY}
+                stroke={accent}
+                strokeWidth="0.6"
+                opacity="0.55"
+              />
+              {/* top ring */}
+              <ellipse
+                cx={l.x}
+                cy={bodyY}
+                rx={bodyRx * 0.6}
+                ry="1.4"
+                stroke={accent}
+                strokeWidth="0.5"
+                fill="none"
+                opacity="0.35"
+              />
+              {/* body */}
+              <ellipse
+                cx={l.x}
+                cy={bodyY + bodyRy}
+                rx={bodyRx}
+                ry={bodyRy}
+                fill={accent}
+                opacity="0.55"
+              />
+              {/* bottom ring */}
+              <ellipse
+                cx={l.x}
+                cy={bodyY + l.bodyH}
+                rx={bodyRx * 0.6}
+                ry="1.4"
+                stroke={accent}
+                strokeWidth="0.5"
+                fill="none"
+                opacity="0.28"
+              />
+            </g>
           );
         })}
-        <circle cx="14" cy="14" r="3" fill={screenAccent} opacity="0.42" />
-        <circle cx="14" cy="14" r="1.2" fill={screenAccent} opacity="0.68" />
       </svg>
+    );
+  }
 
-      {/* Names */}
-      <div className="text-center mb-2">
-        <p
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: 14,
-            color: screenText,
-            fontWeight: 400,
-            lineHeight: 1.2,
-          }}
-        >
-          Priya
-        </p>
-        <p
-          style={{
-            fontSize: 7,
-            color: screenAccent,
-            opacity: 0.6,
-            margin: "1px 0",
-            letterSpacing: "0.1em",
-            fontFamily: "var(--font-sans)",
-          }}
-        >
-          &amp;
-        </p>
-        <p
-          style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: 14,
-            color: screenText,
-            fontWeight: 400,
-            lineHeight: 1.2,
-          }}
-        >
-          Arjun
-        </p>
-      </div>
-
-      {/* Divider */}
-      <div className="flex items-center gap-1 w-full my-1.5">
-        <div className="flex-1 h-px" style={{ background: `${screenAccent}18` }} />
-        <div
-          className="rounded-full"
-          style={{ width: 3, height: 3, background: `${screenAccent}32` }}
-        />
-        <div className="flex-1 h-px" style={{ background: `${screenAccent}18` }} />
-      </div>
-
-      {/* Date */}
-      <p
+  if (id === "beach") {
+    return (
+      <svg
+        viewBox="0 0 200 70"
+        fill="none"
+        preserveAspectRatio="none"
         style={{
-          fontFamily: "var(--font-serif)",
-          fontSize: 8,
-          color: screenText,
-          opacity: 0.55,
-          letterSpacing: "0.08em",
-          marginBottom: 10,
-          fontStyle: "italic",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "35%",
+          zIndex: 1,
+          pointerEvents: "none",
         }}
       >
-        14 · February · 2026
-      </p>
+        {/* wave 1 */}
+        <path
+          d="M0,28 C30,14 60,36 90,28 C120,20 150,38 200,24 L200,70 L0,70 Z"
+          fill={accent}
+          opacity="0.18"
+        />
+        {/* wave 2 */}
+        <path
+          d="M0,42 C40,28 80,50 120,38 C155,28 175,46 200,36 L200,70 L0,70 Z"
+          fill={accent}
+          opacity="0.12"
+        />
+        {/* sun — top right of the full preview, rendered in this svg at top-right */}
+        <circle cx="178" cy="10" r="12" fill={accent} opacity="0.25" />
+      </svg>
+    );
+  }
 
-      {/* Event pills */}
-      <div className="flex gap-1 w-full mb-3">
-        {["Mehendi", "Wedding", "Reception"].map((ev) => (
+  if (id === "mountain") {
+    const stars = [
+      { cx: 18, cy: 12, r: 0.9, op: 0.65 },
+      { cx: 45, cy: 7, r: 1.1, op: 0.7 },
+      { cx: 72, cy: 16, r: 0.8, op: 0.6 },
+      { cx: 100, cy: 5, r: 1.0, op: 0.68 },
+      { cx: 130, cy: 11, r: 0.9, op: 0.62 },
+      { cx: 158, cy: 6, r: 1.1, op: 0.7 },
+      { cx: 185, cy: 14, r: 0.8, op: 0.65 },
+      { cx: 58, cy: 22, r: 0.7, op: 0.6 },
+      { cx: 142, cy: 20, r: 0.8, op: 0.63 },
+    ];
+    return (
+      <svg
+        viewBox="0 0 200 152"
+        fill="none"
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      >
+        {/* stars */}
+        {stars.map((s, i) => (
+          <circle
+            key={i}
+            cx={s.cx}
+            cy={s.cy}
+            r={s.r}
+            fill={accent}
+            opacity={s.op}
+          />
+        ))}
+        {/* crescent moon — two offset circles approach */}
+        <circle cx="165" cy="30" r="11" fill={accent} opacity="0.45" />
+        <circle cx="170" cy="27" r="9" fill="#142042" opacity="1" />
+
+        {/* mountain silhouette back */}
+        <path
+          d="M0,152 L0,100 L40,58 L80,88 L110,48 L150,82 L180,55 L200,68 L200,152 Z"
+          fill={accent}
+          opacity="0.12"
+        />
+        {/* mountain silhouette front */}
+        <path
+          d="M0,152 L0,115 L30,80 L65,105 L95,68 L130,98 L160,72 L200,90 L200,152 Z"
+          fill={accent}
+          opacity="0.18"
+        />
+      </svg>
+    );
+  }
+
+  return null;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   WeddingOrnament — 6-petal mandala SVG
+───────────────────────────────────────────────────────────────── */
+function WeddingOrnament({ color }: { color: string }) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" style={{ width: "100%", height: "100%" }}>
+      {[0, 60, 120, 180, 240, 300].map((a) => {
+        const rad = (a * Math.PI) / 180;
+        const cx = 10 + 4 * Math.cos(rad);
+        const cy = 10 + 4 * Math.sin(rad);
+        return (
+          <ellipse
+            key={a}
+            cx={cx}
+            cy={cy}
+            rx={2}
+            ry={1.2}
+            fill={color}
+            opacity={0.45}
+            transform={`rotate(${a} ${cx} ${cy})`}
+          />
+        );
+      })}
+      <circle cx="10" cy="10" r="2" fill={color} opacity="0.5" />
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   DeviceFrame — laptop mockup
+───────────────────────────────────────────────────────────────── */
+function DeviceFrame({
+  previewBg,
+  previewAccent,
+  previewText,
+  templateId,
+}: {
+  previewBg: string;
+  previewAccent: string;
+  previewText: string;
+  templateId: string;
+}) {
+  return (
+    <div style={{ width: "100%", maxWidth: 280, margin: "0 auto" }}>
+      {/* Screen */}
+      <div
+        style={{
+          border: "2px solid #1A1A1A",
+          borderBottom: "none",
+          borderRadius: "10px 10px 0 0",
+          overflow: "hidden",
+        }}
+      >
+        {/* Browser chrome */}
+        <div
+          style={{
+            height: 26,
+            background: "#1A1A1A",
+            display: "flex",
+            alignItems: "center",
+            padding: "0 10px",
+            gap: 5,
+          }}
+        >
+          {/* Traffic light dots */}
+          {["#444", "#444", "#444"].map((c, i) => (
+            <div
+              key={i}
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: c,
+                flexShrink: 0,
+              }}
+            />
+          ))}
+          {/* URL bar */}
           <div
-            key={ev}
-            className="flex-1 text-center"
             style={{
-              background: `${screenAccent}10`,
+              flex: 1,
+              height: 12,
               borderRadius: 6,
-              padding: "3px 2px",
-              fontSize: 5.5,
-              color: screenAccent,
-              opacity: 0.8,
-              fontFamily: "var(--font-sans)",
-              letterSpacing: "0.03em",
+              background: "#282828",
+              marginLeft: 6,
+              display: "flex",
+              alignItems: "center",
+              paddingLeft: 6,
+              overflow: "hidden",
             }}
           >
-            {ev}
+            <span
+              style={{
+                fontSize: 5,
+                color: "#555",
+                whiteSpace: "nowrap",
+                fontFamily: "var(--font-sans)",
+              }}
+            >
+              invitebliss.in/{templateId}
+            </span>
           </div>
-        ))}
+        </div>
+
+        {/* Preview content */}
+        <div
+          style={{
+            height: 152,
+            background: previewBg,
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {/* Decorative layer */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 1,
+              pointerEvents: "none",
+            }}
+          >
+            <PreviewDecor id={templateId} accent={previewAccent} />
+          </div>
+
+          {/* Centered invite content */}
+          <div
+            style={{
+              position: "relative",
+              zIndex: 2,
+              textAlign: "center",
+            }}
+          >
+            {/* Label */}
+            <p
+              style={{
+                fontSize: 5.5,
+                letterSpacing: "0.18em",
+                color: previewAccent,
+                opacity: 0.72,
+                textTransform: "uppercase",
+                fontFamily: "var(--font-sans)",
+                marginBottom: 5,
+                margin: "0 0 5px",
+              }}
+            >
+              WEDDING INVITATION
+            </p>
+
+            {/* Ornament */}
+            <div
+              style={{
+                width: 18,
+                height: 18,
+                margin: "0 auto 4px",
+                opacity: 0.55,
+              }}
+            >
+              <WeddingOrnament color={previewAccent} />
+            </div>
+
+            {/* Names */}
+            <p
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: 15,
+                fontWeight: 700,
+                color: previewText,
+                lineHeight: 1.12,
+                margin: 0,
+              }}
+            >
+              Priya &amp; Arjun
+            </p>
+
+            {/* Divider */}
+            <div
+              style={{
+                width: 28,
+                height: 1,
+                background: previewAccent,
+                opacity: 0.3,
+                margin: "4px auto",
+              }}
+            />
+
+            {/* Date */}
+            <p
+              style={{
+                fontSize: 5.5,
+                color: previewText,
+                opacity: 0.52,
+                letterSpacing: "0.09em",
+                fontStyle: "italic",
+                fontFamily: "var(--font-sans)",
+                margin: 0,
+              }}
+            >
+              14 · February · 2026
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* RSVP */}
+      {/* Bottom bezel */}
       <div
         style={{
-          background: `${screenAccent}12`,
-          border: `0.5px solid ${screenAccent}25`,
-          borderRadius: 100,
-          padding: "3px 12px",
-          fontSize: 6.5,
-          color: screenAccent,
-          letterSpacing: "0.06em",
-          fontFamily: "var(--font-sans)",
+          height: 14,
+          background: "linear-gradient(180deg,#282828 0%,#1A1A1A 100%)",
+          border: "2px solid #1A1A1A",
+          borderTop: "1px solid #333",
+          borderRadius: "0 0 6px 6px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        RSVP →
+        <div
+          style={{
+            width: "40%",
+            height: 3,
+            borderRadius: 2,
+            background: "rgba(255,255,255,0.04)",
+          }}
+        />
       </div>
 
-      {/* Home indicator */}
+      {/* Stand */}
       <div
-        className="absolute bottom-2.5 left-1/2 -translate-x-1/2"
         style={{
-          width: 24,
-          height: 2,
-          borderRadius: 2,
-          background: `${screenText}15`,
+          height: 4,
+          background: "#303030",
+          width: "42%",
+          margin: "0 auto",
+          borderRadius: "0 0 3px 3px",
         }}
       />
     </div>
   );
 }
 
-/* ──────────────────────────────────────────────────────────────────
-   Phone dimensions
-────────────────────────────────────────────────────────────────── */
-const PHONE_W = 270;
-const PHONE_H = Math.round(PHONE_W * 2.1); // ~567px
+/* ─────────────────────────────────────────────────────────────────
+   TemplateCard
+───────────────────────────────────────────────────────────────── */
+function TemplateCard({
+  template,
+  index,
+}: {
+  template: ShowcaseTemplate;
+  index: number;
+}) {
+  const [shadow, setShadow] = useState("0 2px 12px rgba(0,0,0,0.05)");
 
-/* ──────────────────────────────────────────────────────────────────
-   Animation variants
-────────────────────────────────────────────────────────────────── */
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.07 } },
-};
-const itemVariants = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
-  },
-};
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 16 }}
+      transition={{
+        duration: 0.55,
+        delay: index * 0.07,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={{ y: -4 }}
+    >
+      <div
+        style={{
+          background: "#FFFFFF",
+          border: "1px solid #E2E2E2",
+          borderRadius: 18,
+          overflow: "hidden",
+          cursor: "pointer",
+          boxShadow: shadow,
+          transition: "box-shadow 0.22s ease",
+        }}
+        onMouseEnter={() => setShadow("0 8px 32px rgba(0,0,0,0.10)")}
+        onMouseLeave={() => setShadow("0 2px 12px rgba(0,0,0,0.05)")}
+      >
+        {/* Preview container */}
+        <div
+          style={{
+            background: "#EDEDED",
+            padding: "2rem 1.5rem 1.75rem",
+            position: "relative",
+          }}
+        >
+          {/* Category pill */}
+          <div
+            style={{
+              position: "absolute",
+              top: "1rem",
+              left: "1rem",
+              zIndex: 10,
+              background: "white",
+              border: "1px solid #D8D8D8",
+              borderRadius: 100,
+              padding: "0.3rem 0.875rem",
+              fontSize: "0.6875rem",
+              fontWeight: 500,
+              color: "#444",
+              boxShadow: "0 1px 4px rgba(0,0,0,0.07)",
+              fontFamily: "var(--font-sans)",
+            }}
+          >
+            {template.category}
+          </div>
 
-/* ──────────────────────────────────────────────────────────────────
-   Component
-────────────────────────────────────────────────────────────────── */
+          {/* Eye button */}
+          <button
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              zIndex: 10,
+              width: 32,
+              height: 32,
+              borderRadius: "50%",
+              background: "white",
+              border: "1px solid #D8D8D8",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Eye size={13} style={{ color: "#666" }} />
+          </button>
+
+          <DeviceFrame
+            previewBg={template.previewBg}
+            previewAccent={template.previewAccent}
+            previewText={template.previewText}
+            templateId={template.id}
+          />
+        </div>
+
+        {/* Info area */}
+        <div style={{ padding: "1.25rem 1.375rem 1.375rem" }}>
+          {/* Title + price row */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 8,
+              marginBottom: "0.5rem",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "1.1875rem",
+                fontWeight: 700,
+                color: "#111",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              {template.name}
+            </span>
+            <span
+              style={{
+                background: "#111",
+                color: "white",
+                borderRadius: 100,
+                padding: "0.3rem 0.875rem",
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.8125rem",
+                fontWeight: 600,
+                whiteSpace: "nowrap",
+                flexShrink: 0,
+              }}
+            >
+              {template.price}
+            </span>
+          </div>
+
+          {/* Description */}
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.875rem",
+              color: "#666",
+              lineHeight: 1.62,
+              margin: 0,
+            }}
+          >
+            {template.description}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Main TemplateShowcase component
+───────────────────────────────────────────────────────────────── */
 export default function TemplateShowcase() {
-  const [activeCategory, setActiveCategory] = useState<Category>("All");
+  const [activeCategory, setActiveCategory] = useState<ShowcaseCategory>("All");
 
   const filtered =
     activeCategory === "All"
-      ? templates
-      : templates.filter((t) => t.category === activeCategory);
+      ? SHOWCASE_TEMPLATES
+      : SHOWCASE_TEMPLATES.filter((t) => t.category === activeCategory);
 
   return (
     <section
       id="templates"
-      className="section grain"
-      style={{ background: "var(--surface-warm)" }}
+      style={{ background: "#F2F2F2", padding: "6rem 1.25rem" }}
     >
-      <div className="section-inner">
+      <div style={{ maxWidth: 1160, margin: "0 auto" }}>
 
-        {/* ── Section header ── */}
-        <div className="section-header">
-          <motion.p
-            className="eyebrow mb-4"
-            initial={{ opacity: 0, y: 10 }}
+        {/* Header block */}
+        <div
+          style={{
+            textAlign: "center",
+            maxWidth: 700,
+            margin: "0 auto",
+            marginBottom: "4.5rem",
+          }}
+        >
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          >
-            New Releases
-          </motion.p>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.09, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontFamily: "var(--font-serif)",
-              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              fontSize: "clamp(1.875rem, 3.5vw, 3rem)",
               fontWeight: 800,
               lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              color: "var(--primary)",
+              letterSpacing: "-0.025em",
+              color: "#111",
               marginBottom: "0.875rem",
             }}
           >
-            Designed for your big day.
+            Designed for your{" "}
+            <span style={{ fontStyle: "italic" }}>BIG</span> day. Easy-to-edit.
+            Effortless to Share.
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+            transition={{ delay: 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "1.0625rem",
-              color: "var(--text-muted)",
+              color: "#666",
+              lineHeight: 1.6,
+              marginBottom: "2.75rem",
             }}
           >
-            Easy to edit. Effortless to share.
+            Pick a style. Add your story. Share in minutes
           </motion.p>
+
+          {/* Select Category label */}
+          <p
+            style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.8125rem",
+              fontWeight: 500,
+              color: "#888",
+              letterSpacing: "0.04em",
+              marginBottom: "0.875rem",
+            }}
+          >
+            Select Category
+          </p>
+
+          {/* Filter pills */}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.5rem",
+              justifyContent: "center",
+            }}
+          >
+            {CATEGORIES.map((cat) => {
+              const active = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  style={{
+                    fontFamily: "var(--font-sans)",
+                    fontSize: "0.8125rem",
+                    fontWeight: 500,
+                    padding: "0.4375rem 1.125rem",
+                    borderRadius: 100,
+                    background: active ? "#111" : "white",
+                    color: active ? "white" : "#555",
+                    border: active ? "1px solid #111" : "1px solid #D8D8D8",
+                    cursor: "pointer",
+                    transition: "all 0.18s ease",
+                  }}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* ── Filter pills ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.12, duration: 0.45 }}
-          className="flex flex-wrap gap-2 justify-center"
-          style={{ marginBottom: "3.5rem" }}
-        >
-          {categories.map((cat) => {
-            const active = activeCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "0.8125rem",
-                  fontWeight: 500,
-                  padding: "0.4375rem 1.125rem",
-                  borderRadius: 100,
-                  background: active ? "var(--primary)" : "white",
-                  color: active ? "white" : "var(--text-muted)",
-                  border: `1.5px solid ${active ? "var(--primary)" : "var(--border)"}`,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  boxShadow: active
-                    ? "0 2px 12px rgba(23,17,14,0.22)"
-                    : "none",
-                }}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </motion.div>
-
-        {/* ── Template grid ── */}
+        {/* Template grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
-            variants={containerVariants}
-            initial="hidden"
-            animate="show"
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+            style={{ gap: "1.5rem" }}
           >
-            {filtered.map((template) => (
-              <motion.div
-                key={template.id}
-                variants={itemVariants}
-                className="template-card-hover flex flex-col"
+            {filtered.length === 0 ? (
+              <div
                 style={{
-                  background: "white",
-                  border: "1px solid var(--border-gold)",
-                  borderRadius: 20,
-                  overflow: "hidden",
-                  cursor: "pointer",
-                  boxShadow:
-                    "0 2px 12px rgba(23,17,14,0.05), 0 8px 32px rgba(23,17,14,0.04)",
+                  gridColumn: "1 / -1",
+                  textAlign: "center",
+                  color: "#999",
+                  padding: "3rem 0",
+                  fontFamily: "var(--font-sans)",
                 }}
               >
-                {/* Preview area */}
-                <div
-                  className="grain-card flex items-center justify-center"
-                  style={{
-                    background: template.screenBg,
-                    borderBottom: "1px solid var(--border-gold)",
-                    padding: "3.5rem 1.5rem",
-                  }}
-                >
-                  <div
-                    className="phone-frame"
-                    style={{
-                      width: PHONE_W,
-                      height: PHONE_H,
-                      boxShadow:
-                        "0 4px 16px rgba(0,0,0,0.35), 0 28px 72px rgba(0,0,0,0.28), 0 54px 108px rgba(0,0,0,0.16)",
-                      transition: "box-shadow 0.3s ease",
-                    }}
-                  >
-                    <TemplatePhoneScreen
-                      screenBg={template.screenBg}
-                      screenAccent={template.screenAccent}
-                      screenText={template.screenText}
-                      tagline={template.tagline}
-                    />
-                  </div>
-                </div>
-
-                {/* Info area */}
-                <div style={{ padding: "1.75rem 1.75rem 1.625rem" }}>
-                  {/* Category badge */}
-                  <div
-                    className="inline-block"
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "0.6875rem",
-                      fontWeight: 600,
-                      letterSpacing: "0.06em",
-                      padding: "0.25rem 0.75rem",
-                      borderRadius: 100,
-                      background: "var(--gold-faint)",
-                      border: "1px solid var(--border-gold)",
-                      color: "#8B6914",
-                      marginBottom: "0.875rem",
-                    }}
-                  >
-                    {template.badge}
-                  </div>
-
-                  {/* Template name */}
-                  <h3
-                    style={{
-                      fontFamily: "var(--font-serif)",
-                      fontSize: "1.625rem",
-                      fontWeight: 700,
-                      color: "var(--text-main)",
-                      marginBottom: "0.375rem",
-                      lineHeight: 1.2,
-                      letterSpacing: "-0.01em",
-                    }}
-                  >
-                    {template.name}
-                  </h3>
-
-                  {/* Tagline */}
-                  <p
-                    style={{
-                      fontFamily: "var(--font-sans)",
-                      fontSize: "0.9375rem",
-                      color: "var(--text-muted)",
-                      marginBottom: "1.375rem",
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    {template.tagline}
-                  </p>
-
-                  {/* Divider */}
-                  <div
-                    style={{
-                      height: 1,
-                      background: "var(--border-gold)",
-                      opacity: 0.6,
-                      marginBottom: "1.25rem",
-                    }}
-                  />
-
-                  {/* Price row + CTA */}
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-sans)",
-                          fontSize: "1.1875rem",
-                          fontWeight: 700,
-                          color: "var(--text-main)",
-                          display: "block",
-                          lineHeight: 1.2,
-                        }}
-                      >
-                        {template.price}
-                      </span>
-                      <span
-                        style={{
-                          fontFamily: "var(--font-sans)",
-                          fontSize: "0.75rem",
-                          color: "var(--text-light)",
-                          fontWeight: 400,
-                        }}
-                      >
-                        ≈ $43 USD
-                      </span>
-                    </div>
-
-                    <button
-                      className="btn-primary"
-                      style={{
-                        fontSize: "0.875rem",
-                        padding: "0.625rem 1.375rem",
-                        flexShrink: 0,
-                      }}
-                    >
-                      Buy →
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                Templates coming soon for this category.
+              </div>
+            ) : (
+              filtered.map((template, index) => (
+                <TemplateCard
+                  key={template.id}
+                  template={template}
+                  index={index}
+                />
+              ))
+            )}
           </motion.div>
         </AnimatePresence>
+
       </div>
     </section>
   );
