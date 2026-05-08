@@ -100,8 +100,8 @@ const heroPhones = [
 
 const doubled = [...heroPhones, ...heroPhones];
 
-const PHONE_W = 170;
-const PHONE_H = Math.round(PHONE_W * 2.05);
+const PHONE_W = 150;
+const PHONE_H = Math.round(PHONE_W * 2.05); // 308
 
 export default function Hero() {
   const handleScroll = (href: string) => {
@@ -242,8 +242,8 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative flex flex-col gap-5 overflow-hidden"
-            style={{ height: PHONE_H + 80 }}
+            className="relative flex flex-col gap-4 overflow-hidden"
+            style={{ height: PHONE_H * 2 + 40 }}
           >
             {/* Top marquee row */}
             <div className="marquee-wrapper">
@@ -289,12 +289,12 @@ export default function Hero() {
 
             {/* Overlay fades for top/bottom */}
             <div
-              className="absolute inset-x-0 top-0 h-16 pointer-events-none"
-              style={{ background: "linear-gradient(to bottom, #F8F1EA, transparent)" }}
+              className="absolute inset-x-0 top-0 h-20 pointer-events-none"
+              style={{ background: "linear-gradient(to bottom, #F2E8DE, transparent)" }}
             />
             <div
-              className="absolute inset-x-0 bottom-0 h-16 pointer-events-none"
-              style={{ background: "linear-gradient(to top, #F8F1EA, transparent)" }}
+              className="absolute inset-x-0 bottom-0 h-20 pointer-events-none"
+              style={{ background: "linear-gradient(to top, #F2E8DE, transparent)" }}
             />
           </motion.div>
         </div>

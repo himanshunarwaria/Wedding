@@ -48,8 +48,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}
-      style={{ "--font-serif-var": `var(${playfair.variable})`, "--font-sans-var": `var(${dmSans.variable})` } as React.CSSProperties}>
+    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
       <body>{children}</body>
     </html>
   );

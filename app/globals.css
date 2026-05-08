@@ -24,8 +24,7 @@
   --border-light: #F0E8E0;
   --footer-bg:    #1E1916;
 
-  --font-serif: var(--font-serif-var, "Playfair Display"), Georgia, serif;
-  --font-sans:  var(--font-sans-var, "DM Sans"), system-ui, sans-serif;
+  /* --font-serif and --font-sans are injected by next/font as CSS variables */
 }
 
 /* ─────────────────────────────────────────────
@@ -43,7 +42,7 @@ html {
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-sans);
+  font-family: var(--font-sans), "DM Sans", system-ui, sans-serif;
   line-height: 1.65;
   overflow-x: hidden;
 }
