@@ -2,9 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Sparkles, Instagram, Twitter, Mail, Heart } from "lucide-react";
-import { OrnamentDivider } from "./Ornament";
 
-/* ── CHANGE BRAND / CONTACT INFO BELOW ── */
 const BRAND   = "InviteBliss";
 const TAGLINE = "Premium wedding invitation websites for every couple.";
 const EMAIL   = "hello@invitebliss.in";
@@ -19,23 +17,23 @@ const footerLinks = {
     { label: "Save the Date",     href: "#templates" },
   ],
   Product: [
-    { label: "Features",          href: "#features" },
+    { label: "Features",          href: "#features"     },
     { label: "How It Works",      href: "#how-it-works" },
-    { label: "Pricing",           href: "#templates" },
-    { label: "FAQ",               href: "#faq" },
+    { label: "Pricing",           href: "#templates"    },
+    { label: "FAQ",               href: "#faq"          },
   ],
   Company: [
-    { label: "About",             href: "#" },
-    { label: "Contact",           href: `mailto:${EMAIL}` },
-    { label: "Privacy Policy",    href: "#" },
-    { label: "Refund Policy",     href: "#" },
+    { label: "About",          href: "#"                   },
+    { label: "Contact",        href: `mailto:${EMAIL}`     },
+    { label: "Privacy Policy", href: "#"                   },
+    { label: "Refund Policy",  href: "#"                   },
   ],
 };
 
 const socialLinks = [
-  { icon: Instagram, href: "#",              label: "Instagram" },
-  { icon: Twitter,   href: "#",              label: "Twitter"   },
-  { icon: Mail,      href: `mailto:${EMAIL}`, label: "Email"    },
+  { icon: Instagram, href: "#",               label: "Instagram" },
+  { icon: Twitter,   href: "#",               label: "Twitter"   },
+  { icon: Mail,      href: `mailto:${EMAIL}`, label: "Email"     },
 ];
 
 export default function Footer() {
@@ -48,26 +46,16 @@ export default function Footer() {
   return (
     <footer
       className="relative overflow-hidden"
-      style={{ background: "linear-gradient(170deg, #3A0F19 0%, #2A0B13 100%)" }}
+      style={{ background: "linear-gradient(170deg, #2A2420 0%, #1E1916 100%)" }}
     >
       {/* Top wave */}
       <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ lineHeight: 0 }}>
         <svg viewBox="0 0 1440 56" preserveAspectRatio="none" className="w-full block" style={{ height: 56 }}>
-          <path d="M0,56 C480,0 960,56 1440,0 L1440,0 L0,0 Z" fill="var(--background)" />
+          <path d="M0,56 C480,0 960,56 1440,0 L1440,0 L0,0 Z" fill="var(--bg-2)" />
         </svg>
       </div>
 
       <div className="max-w-[1160px] mx-auto px-5 pt-24 pb-10">
-
-        {/* Top ornament */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <OrnamentDivider className="opacity-20" />
-        </motion.div>
 
         {/* Main grid */}
         <motion.div
@@ -83,20 +71,36 @@ export default function Footer() {
               href="#"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               className="flex items-center gap-2 mb-3"
-              style={{ color: "white", fontFamily: "var(--font-serif)", fontSize: "1.25rem", fontWeight: 500, textDecoration: "none" }}
+              style={{
+                color: "white",
+                fontFamily: "var(--font-serif)",
+                fontSize: "1.25rem",
+                fontWeight: 500,
+                textDecoration: "none",
+              }}
             >
-              <Sparkles size={17} style={{ color: "#C9A45C" }} />
+              <Sparkles size={17} style={{ color: "#C5A467" }} />
               {BRAND}
             </a>
             <p
               className="mb-2 italic"
-              style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.875rem", fontFamily: "var(--font-serif)", fontWeight: 300, lineHeight: 1.6 }}
+              style={{
+                color: "rgba(255,255,255,0.4)",
+                fontSize: "0.875rem",
+                fontFamily: "var(--font-serif)",
+                fontWeight: 300,
+                lineHeight: 1.6,
+              }}
             >
               {TAGLINE}
             </p>
             <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.8125rem" }}>
-              <a href={`mailto:${EMAIL}`} style={{ color: "rgba(201,164,92,0.7)", textDecoration: "none" }}
-                 className="hover:opacity-100 transition-opacity">
+              <a
+                href={`mailto:${EMAIL}`}
+                style={{ color: "rgba(197,164,103,0.7)", textDecoration: "none", transition: "opacity 0.15s ease" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.7"; }}
+              >
                 {EMAIL}
               </a>
             </p>
@@ -116,9 +120,9 @@ export default function Footer() {
                   }}
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLAnchorElement;
-                    el.style.background = "#C9A45C";
-                    el.style.borderColor = "#C9A45C";
-                    el.style.color = "#43111B";
+                    el.style.background = "#C5A467";
+                    el.style.borderColor = "#C5A467";
+                    el.style.color = "#2D2926";
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLAnchorElement;
@@ -138,7 +142,13 @@ export default function Footer() {
             <div key={heading}>
               <p
                 className="mb-4"
-                style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.6875rem", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase" }}
+                style={{
+                  color: "rgba(255,255,255,0.45)",
+                  fontSize: "0.6875rem",
+                  fontWeight: 600,
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                }}
               >
                 {heading}
               </p>
@@ -148,10 +158,18 @@ export default function Footer() {
                     <a
                       href={link.href}
                       onClick={(e) => {
-                        if (link.href.startsWith("#")) { e.preventDefault(); handleNav(link.href); }
+                        if (link.href.startsWith("#")) {
+                          e.preventDefault();
+                          handleNav(link.href);
+                        }
                       }}
-                      style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.875rem", textDecoration: "none", transition: "color 0.15s ease" }}
-                      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#C9A45C"; }}
+                      style={{
+                        color: "rgba(255,255,255,0.38)",
+                        fontSize: "0.875rem",
+                        textDecoration: "none",
+                        transition: "color 0.15s ease",
+                      }}
+                      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#C5A467"; }}
                       onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.38)"; }}
                     >
                       {link.label}
@@ -171,8 +189,13 @@ export default function Footer() {
           <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.75rem" }}>
             &copy; {YEAR} {BRAND}. All rights reserved.
           </p>
-          <p className="flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.75rem" }}>
-            Made with <Heart size={10} style={{ color: "#C9A45C", fill: "#C9A45C" }} /> for every couple&rsquo;s big day
+          <p
+            className="flex items-center gap-1.5"
+            style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.75rem" }}
+          >
+            Made with{" "}
+            <Heart size={10} style={{ color: "#C5A467", fill: "#C5A467" }} />{" "}
+            for every couple&rsquo;s big day
           </p>
         </div>
       </div>

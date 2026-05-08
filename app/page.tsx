@@ -8,6 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
+import StickyBar from "@/components/StickyBar";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <Newsletter />
       </main>
       <Footer />
+      <StickyBar />
     </>
   );
 }

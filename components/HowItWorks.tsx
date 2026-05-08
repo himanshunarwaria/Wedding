@@ -1,55 +1,132 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LayoutTemplate, PenLine, SendHorizonal, ArrowRight } from "lucide-react";
-import { OrnamentDivider, VerticalGoldLine } from "./Ornament";
+
+const PHONE_W = 180;
+const PHONE_H = Math.round(PHONE_W * 2.05);
+
+/* ── Step phone screens ── */
+const StepOneScreen = () => (
+  <div className="absolute inset-0 flex flex-col pt-10 pb-4 px-3" style={{ background: "var(--bg-2)" }}>
+    <div className="absolute top-3 left-3 right-3 flex justify-between" style={{ fontSize: 5.5, color: "#5C4F47", opacity: 0.5 }}>
+      <span>9:41</span><span>●●●</span>
+    </div>
+    <p style={{ fontSize: 6, letterSpacing: "0.14em", color: "var(--gold)", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-sans)" }}>
+      Browse Templates
+    </p>
+    <div className="flex flex-col gap-2">
+      {[
+        { bg: "linear-gradient(135deg,#F5E6D0,#E8C9A0)", label: "Aaranya", sub: "Hindu Wedding", accent: "#8B3A0F" },
+        { bg: "linear-gradient(135deg,#F9EEF2,#EDCDD8)", label: "Meher",   sub: "Christian",     accent: "#9C2B4B" },
+        { bg: "linear-gradient(135deg,#1E2A5E,#0F1A42)", label: "Noor",    sub: "Muslim Wedding", accent: "#C9A45C" },
+      ].map((t) => (
+        <div key={t.label} className="flex items-center gap-2 rounded-lg overflow-hidden" style={{ border: "0.5px solid rgba(45,41,38,0.1)" }}>
+          <div className="flex-shrink-0 w-10 h-10" style={{ background: t.bg }} />
+          <div>
+            <p style={{ fontSize: 8, fontWeight: 600, color: "#2D2926", fontFamily: "var(--font-sans)" }}>{t.label}</p>
+            <p style={{ fontSize: 6, color: "#8B7D74", fontFamily: "var(--font-sans)" }}>{t.sub}</p>
+          </div>
+          <div className="ml-auto mr-2 w-3 h-3 rounded-full flex items-center justify-center" style={{ background: t.accent + "20" }}>
+            <span style={{ fontSize: 5, color: t.accent }}>›</span>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full" style={{ background: "rgba(45,41,38,0.12)" }} />
+  </div>
+);
+
+const StepTwoScreen = () => (
+  <div className="absolute inset-0 flex flex-col pt-10 pb-4 px-3" style={{ background: "#FFFFFF" }}>
+    <div className="absolute top-3 left-3 right-3 flex justify-between" style={{ fontSize: 5.5, color: "#5C4F47", opacity: 0.5 }}>
+      <span>9:41</span><span>●●●</span>
+    </div>
+    <p style={{ fontSize: 6, letterSpacing: "0.14em", color: "var(--gold)", textTransform: "uppercase", marginBottom: 10, fontFamily: "var(--font-sans)" }}>
+      Add Your Details
+    </p>
+    <div className="flex flex-col gap-2">
+      {[
+        { label: "Bride's name", value: "Priya Sharma" },
+        { label: "Groom's name", value: "Arjun Mehta" },
+        { label: "Wedding date", value: "14 Feb 2026" },
+        { label: "Venue", value: "The Grand Palace, Jaipur" },
+      ].map((field) => (
+        <div key={field.label}>
+          <p style={{ fontSize: 5.5, color: "#8B7D74", marginBottom: 1.5, fontFamily: "var(--font-sans)" }}>{field.label}</p>
+          <div className="rounded-md px-2 py-1.5" style={{ background: "var(--bg-2)", border: "0.5px solid var(--border)", fontSize: 7.5, color: "#2D2926", fontFamily: "var(--font-sans)" }}>
+            {field.value}
+          </div>
+        </div>
+      ))}
+    </div>
+    <div className="mt-3 py-1.5 rounded-full text-center" style={{ background: "linear-gradient(135deg,#C5A467,#B8933A)", fontSize: 7, color: "#2D2926", fontWeight: 600 }}>
+      Preview Invite →
+    </div>
+    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full" style={{ background: "rgba(45,41,38,0.12)" }} />
+  </div>
+);
+
+const StepThreeScreen = () => (
+  <div className="absolute inset-0 flex flex-col pt-10 pb-4 px-3" style={{ background: "var(--bg-2)" }}>
+    <div className="absolute top-3 left-3 right-3 flex justify-between" style={{ fontSize: 5.5, color: "#5C4F47", opacity: 0.5 }}>
+      <span>9:41</span><span>●●●</span>
+    </div>
+    <p style={{ fontSize: 6, letterSpacing: "0.14em", color: "var(--gold)", textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-sans)" }}>
+      Share Your Invite
+    </p>
+
+    <div className="rounded-lg p-2 mb-3" style={{ background: "white", border: "0.5px solid var(--border)" }}>
+      <p style={{ fontSize: 6, color: "#8B7D74", marginBottom: 2, fontFamily: "var(--font-sans)" }}>Your invite link</p>
+      <p style={{ fontSize: 7, color: "#C5A467", fontFamily: "var(--font-sans)", fontWeight: 600 }}>invitebliss.in/priya-arjun</p>
+    </div>
+
+    <div className="flex flex-col gap-1.5">
+      {[
+        { icon: "💬", name: "Share on WhatsApp", color: "#25D366" },
+        { icon: "📷", name: "Share on Instagram", color: "#E1306C" },
+        { icon: "✉️", name: "Send via Email",    color: "#C5A467" },
+        { icon: "📋", name: "Copy link",         color: "#5C4F47" },
+      ].map((s) => (
+        <div key={s.name} className="flex items-center gap-2 rounded-md px-2 py-1.5" style={{ background: "white", border: "0.5px solid var(--border)" }}>
+          <span style={{ fontSize: 9 }}>{s.icon}</span>
+          <span style={{ fontSize: 7, color: s.color, fontFamily: "var(--font-sans)", fontWeight: 500 }}>{s.name}</span>
+        </div>
+      ))}
+    </div>
+    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full" style={{ background: "rgba(45,41,38,0.12)" }} />
+  </div>
+);
 
 const steps = [
   {
     number: "01",
-    icon: LayoutTemplate,
-    title: "Choose a template",
-    detail:
-      "Browse handcrafted designs built for Hindu, Sikh, Muslim, Christian, and South Indian weddings. Each one is elegant, mobile-optimised, and ready to personalise.",
+    title: "Browse & pick your design",
+    description:
+      "Explore 6 handcrafted templates. Filter by wedding type — Hindu, Christian, Sikh, Muslim, South Indian, or Save the Date. Preview each one and choose the design that feels like you.",
+    Screen: StepOneScreen,
   },
   {
     number: "02",
-    icon: PenLine,
     title: "Add your details",
-    detail:
-      "Fill in names, dates, venues, events, and your love story using a simple guided form. Upload photos, add a map link, and preview as you go.",
+    description:
+      "Fill in names, dates, venues, and event timings. Upload a couple photo, add background music. Everything through a simple form — no design tool, no code. Done in under 60 minutes.",
+    Screen: StepTwoScreen,
   },
   {
     number: "03",
-    icon: SendHorizonal,
-    title: "Publish and share",
-    detail:
-      "Hit publish and copy your unique invite link. Share it anywhere — WhatsApp, email, Instagram — and guests open it instantly on any device.",
+    title: "Share with everyone",
+    description:
+      "Copy your unique invite link and share it on WhatsApp, Instagram, email, or SMS. Update the details anytime — guests always see the latest version when they open the link.",
+    Screen: StepThreeScreen,
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.18 } },
-};
-
-const stepVariants = {
-  hidden: { opacity: 0, y: 32 },
-  show:  { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
-};
-
 export default function HowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      className="section grain overflow-hidden"
-      style={{
-        background: "linear-gradient(170deg, #F3E7D8 0%, #FBF6EF 50%, #FFFDF8 100%)",
-      }}
-    >
+    <section id="how-it-works" className="section" style={{ background: "var(--bg-3)" }}>
       <div className="section-inner">
 
-        {/* ── Header ── */}
+        {/* Header */}
         <div className="section-header">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -57,124 +134,102 @@ export default function HowItWorks() {
             viewport={{ once: true }}
             className="eyebrow mb-4"
           >
-            Getting Started
+            How It Works
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-text-main mb-5"
-            style={{ fontSize: "clamp(2rem, 3.8vw, 3.25rem)" }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              fontWeight: 400,
+              lineHeight: 1.1,
+              color: "var(--fg)",
+              marginBottom: "1.25rem",
+            }}
           >
-            Your invite is ready in three simple steps
+            From browse to live in three steps
           </motion.h2>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.22 }}
+            transition={{ delay: 0.18 }}
+            style={{ fontSize: "1.0625rem", color: "var(--fg-muted)" }}
           >
-            <OrnamentDivider className="max-w-xs mx-auto" />
-          </motion.div>
+            Most couples are done in under an hour.
+          </motion.p>
         </div>
 
-        {/* ── Steps ── */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-40px" }}
-          className="grid md:grid-cols-3 gap-px relative"
-        >
-          {/* Connecting track (desktop) */}
-          <div
-            className="hidden md:block absolute top-16 left-1/6 right-1/6 h-px pointer-events-none"
-            style={{
-              background: "linear-gradient(to right, transparent, var(--accent-soft), var(--accent), var(--accent-soft), transparent)",
-            }}
-          />
-
+        {/* Steps */}
+        <div className="flex flex-col gap-20 lg:gap-28">
           {steps.map((step, i) => {
-            const Icon = step.icon;
+            const Screen = step.Screen;
+            const isEven = i % 2 === 0;
             return (
               <motion.div
                 key={step.number}
-                variants={stepVariants}
-                className="relative flex flex-col items-center text-center px-6 py-8 md:py-0"
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} items-center gap-12 lg:gap-16`}
               >
-                {/* Step number circle */}
-                <div className="relative mb-6">
-                  <div
-                    className="w-[68px] h-[68px] rounded-2xl flex items-center justify-center relative z-10"
-                    style={{
-                      background: "var(--surface)",
-                      border: "1px solid var(--border)",
-                      boxShadow: "0 2px 12px rgba(107,30,45,0.08)",
-                    }}
-                  >
-                    <Icon size={26} className="text-primary" />
-                  </div>
-                  {/* Step number badge */}
-                  <div
-                    className="absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full flex items-center justify-center z-20"
-                    style={{
-                      background: "linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%)",
-                      boxShadow: "0 2px 8px rgba(107,30,45,0.3)",
-                    }}
-                  >
-                    <span className="text-white font-sans font-bold" style={{ fontSize: "9px" }}>
-                      {i + 1}
-                    </span>
+                {/* Phone */}
+                <div
+                  className="flex-shrink-0"
+                  style={{ filter: "drop-shadow(0 24px 48px rgba(45,41,38,0.14))" }}
+                >
+                  <div className="phone-frame" style={{ width: PHONE_W, height: PHONE_H }}>
+                    <Screen />
                   </div>
                 </div>
 
-                {/* Step content */}
-                <div className="flex flex-col items-center gap-3">
-                  <span className="eyebrow" style={{ fontSize: "0.6rem", color: "var(--accent)", opacity: 0.8 }}>
-                    {step.number}
-                  </span>
+                {/* Copy */}
+                <div className="flex flex-col gap-5 max-w-[480px] text-center lg:text-left items-center lg:items-start">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{ background: "var(--gold-pale)", border: "1px solid var(--gold-light)" }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "1rem",
+                        fontWeight: 500,
+                        color: "var(--gold-hover)",
+                      }}
+                    >
+                      {step.number}
+                    </span>
+                  </div>
                   <h3
-                    className="font-display text-text-main"
-                    style={{ fontSize: "1.3125rem", lineHeight: 1.2 }}
+                    style={{
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
+                      fontWeight: 400,
+                      color: "var(--fg)",
+                      lineHeight: 1.2,
+                    }}
                   >
                     {step.title}
                   </h3>
-                  <p className="text-text-muted leading-relaxed max-w-[220px]" style={{ fontSize: "0.875rem" }}>
-                    {step.detail}
+                  <p
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "1.0625rem",
+                      color: "var(--fg-muted)",
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    {step.description}
                   </p>
                 </div>
-
-                {/* Vertical spacer line between steps on mobile */}
-                {i < steps.length - 1 && (
-                  <div className="md:hidden mt-6">
-                    <VerticalGoldLine height={48} />
-                  </div>
-                )}
               </motion.div>
             );
           })}
-        </motion.div>
-
-        {/* ── CTA ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-14 flex flex-col items-center gap-3"
-        >
-          <button
-            onClick={() => document.querySelector("#templates")?.scrollIntoView({ behavior: "smooth" })}
-            className="btn-primary"
-            style={{ fontSize: "0.9375rem", padding: "0.9rem 2.25rem" }}
-          >
-            Start with a template <ArrowRight size={15} />
-          </button>
-          <p className="text-text-muted" style={{ fontSize: "0.8125rem" }}>
-            Setup takes under 30 minutes. Your invite goes live instantly.
-          </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

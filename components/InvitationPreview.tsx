@@ -140,29 +140,29 @@ export default function InvitationPreview({ template }: { template: Template }) 
   return (
     <div
       className="relative w-full"
-      style={{ background: template.previewBg, aspectRatio: "4 / 5.4" }}
+      style={{ background: template.screenBg, aspectRatio: "4 / 5.4" }}
     >
       {/* Inner card frame (slight padding inset) */}
       <div
         className="absolute inset-3 rounded-xl flex flex-col items-center justify-between py-5 px-5"
-        style={{ border: `1px solid ${template.previewAccent}22` }}
+        style={{ border: `1px solid ${template.screenAccent}22` }}
       >
-        <CornerBorder color={template.previewAccent} opacity={0.4} />
+        <CornerBorder color={template.screenAccent} opacity={0.4} />
 
         {/* Top section */}
         <div className="flex flex-col items-center gap-2 w-full">
           <div className="flex items-center gap-2 w-full">
-            <div className="flex-1 h-px" style={{ background: `${template.previewAccent}30` }} />
+            <div className="flex-1 h-px" style={{ background: `${template.screenAccent}30` }} />
             <svg viewBox="0 0 8 8" fill="none" className="w-2 h-2 flex-shrink-0">
-              <rect x="4" y="0" width="5" height="5" rx="0.3" fill={template.previewAccent} opacity="0.5" transform="rotate(45 4 4)" />
+              <rect x="4" y="0" width="5" height="5" rx="0.3" fill={template.screenAccent} opacity="0.5" transform="rotate(45 4 4)" />
             </svg>
-            <div className="flex-1 h-px" style={{ background: `${template.previewAccent}30` }} />
+            <div className="flex-1 h-px" style={{ background: `${template.screenAccent}30` }} />
           </div>
           <p
             className="font-serif text-center"
             style={{
               fontSize: "0.5rem",
-              color: template.previewAccent,
+              color: template.screenAccent,
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               opacity: 0.75,
@@ -174,7 +174,7 @@ export default function InvitationPreview({ template }: { template: Template }) 
 
         {/* Motif */}
         <div className="flex items-center justify-center">
-          <MotifComp color={template.previewAccent} />
+          <MotifComp color={template.screenAccent} />
         </div>
 
         {/* Names */}
@@ -183,7 +183,7 @@ export default function InvitationPreview({ template }: { template: Template }) 
             className="font-serif"
             style={{
               fontSize: "1.375rem",
-              color: template.previewText,
+              color: template.screenText,
               fontWeight: 400,
               lineHeight: 1.1,
               letterSpacing: "0.02em",
@@ -195,7 +195,7 @@ export default function InvitationPreview({ template }: { template: Template }) 
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "0.5625rem",
-              color: template.previewAccent,
+              color: template.screenAccent,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               opacity: 0.65,
@@ -207,7 +207,7 @@ export default function InvitationPreview({ template }: { template: Template }) 
             className="font-serif"
             style={{
               fontSize: "1.375rem",
-              color: template.previewText,
+              color: template.screenText,
               fontWeight: 400,
               lineHeight: 1.1,
             }}
@@ -218,9 +218,9 @@ export default function InvitationPreview({ template }: { template: Template }) 
 
         {/* Divider */}
         <div className="flex items-center gap-2 w-full">
-          <div className="flex-1 h-px" style={{ background: `${template.previewAccent}25` }} />
-          <div className="w-1 h-1 rounded-full" style={{ background: `${template.previewAccent}45` }} />
-          <div className="flex-1 h-px" style={{ background: `${template.previewAccent}25` }} />
+          <div className="flex-1 h-px" style={{ background: `${template.screenAccent}25` }} />
+          <div className="w-1 h-1 rounded-full" style={{ background: `${template.screenAccent}45` }} />
+          <div className="flex-1 h-px" style={{ background: `${template.screenAccent}25` }} />
         </div>
 
         {/* Date + venue */}
@@ -229,17 +229,17 @@ export default function InvitationPreview({ template }: { template: Template }) 
             className="font-serif"
             style={{
               fontSize: "0.6875rem",
-              color: template.previewText,
+              color: template.screenText,
               letterSpacing: "0.12em",
               opacity: 0.85,
             }}
           >
-            14 · 02 · 2025
+            14 · 02 · 2026
           </p>
           <p
             style={{
               fontSize: "0.5rem",
-              color: template.previewText,
+              color: template.screenText,
               opacity: 0.5,
               letterSpacing: "0.07em",
             }}

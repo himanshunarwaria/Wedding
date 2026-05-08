@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
 
-/* ── CHANGE BRAND NAME HERE ── */
 const BRAND = "InviteBliss";
 
 const navLinks = [
@@ -37,33 +36,33 @@ export default function Navbar() {
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: isScrolled ? "rgba(255,253,248,0.88)" : "transparent",
+          background: isScrolled ? "rgba(253,248,244,0.9)" : "transparent",
           backdropFilter: isScrolled ? "blur(16px) saturate(1.4)" : "none",
-          borderBottom: isScrolled ? "1px solid var(--border)" : "1px solid transparent",
-          boxShadow: isScrolled ? "0 1px 20px rgba(107,30,45,0.06)" : "none",
+          borderBottom: isScrolled ? "1px solid var(--border-light)" : "1px solid transparent",
+          boxShadow: isScrolled ? "0 1px 20px rgba(45,41,38,0.06)" : "none",
         }}
       >
         <nav className="max-w-[1160px] mx-auto px-5 h-[66px] flex items-center justify-between gap-4">
 
-          {/* Brand wordmark */}
+          {/* Brand */}
           <a
             href="#"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="flex items-center gap-2 shrink-0 text-decoration-none"
+            className="flex items-center gap-2 shrink-0"
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "1.1875rem",
               fontWeight: 500,
-              color: "var(--primary)",
+              color: "var(--fg)",
               textDecoration: "none",
               letterSpacing: "0.01em",
             }}
           >
-            <Sparkles size={16} style={{ color: "var(--accent)" }} />
+            <Sparkles size={16} style={{ color: "var(--gold)" }} />
             {BRAND}
           </a>
 
-          {/* Desktop nav links */}
+          {/* Desktop nav */}
           <ul className="hidden md:flex items-center gap-0.5">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -74,17 +73,17 @@ export default function Navbar() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "0.875rem",
                     fontWeight: 500,
-                    color: "var(--text-muted)",
+                    color: "var(--fg-muted)",
                     background: "transparent",
                     border: "none",
                     cursor: "pointer",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color = "var(--primary)";
-                    (e.currentTarget as HTMLButtonElement).style.background = "var(--surface-alt)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "var(--fg)";
+                    (e.currentTarget as HTMLButtonElement).style.background = "var(--bg-2)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color = "var(--text-muted)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "var(--fg-muted)";
                     (e.currentTarget as HTMLButtonElement).style.background = "transparent";
                   }}
                 >
@@ -96,8 +95,11 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3 shrink-0">
-            <button onClick={() => handleNav("#templates")} className="btn-primary"
-                    style={{ fontSize: "0.875rem", padding: "0.625rem 1.375rem" }}>
+            <button
+              onClick={() => handleNav("#templates")}
+              className="btn-primary"
+              style={{ fontSize: "0.875rem", padding: "0.625rem 1.375rem" }}
+            >
               Explore Templates
             </button>
           </div>
@@ -106,7 +108,7 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen((v) => !v)}
             className="md:hidden p-2 rounded-xl transition-colors"
-            style={{ color: "var(--primary)" }}
+            style={{ color: "var(--fg)" }}
             aria-label="Toggle navigation menu"
           >
             {mobileOpen ? <X size={21} /> : <Menu size={21} />}
@@ -124,10 +126,10 @@ export default function Navbar() {
             transition={{ duration: 0.22, ease: "easeOut" }}
             className="fixed inset-x-0 top-[66px] z-40 md:hidden"
             style={{
-              background: "rgba(255,253,248,0.97)",
+              background: "rgba(253,248,244,0.97)",
               backdropFilter: "blur(20px)",
               borderBottom: "1px solid var(--border)",
-              boxShadow: "0 8px 32px rgba(107,30,45,0.1)",
+              boxShadow: "0 8px 32px rgba(45,41,38,0.08)",
             }}
           >
             <div className="max-w-[1160px] mx-auto px-5 py-5 flex flex-col gap-1">
@@ -140,18 +142,18 @@ export default function Navbar() {
                     fontFamily: "var(--font-sans)",
                     fontSize: "1rem",
                     fontWeight: 500,
-                    color: "var(--text-main)",
+                    color: "var(--fg)",
                     background: "transparent",
                     border: "none",
                     cursor: "pointer",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.background = "var(--surface-alt)";
-                    (e.currentTarget as HTMLButtonElement).style.color = "var(--primary)";
+                    (e.currentTarget as HTMLButtonElement).style.background = "var(--bg-2)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "var(--gold-hover)";
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-                    (e.currentTarget as HTMLButtonElement).style.color = "var(--text-main)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "var(--fg)";
                   }}
                 >
                   {link.label}

@@ -1,8 +1,3 @@
-/* ── EDIT TEMPLATES HERE ──────────────────────────────────────
-   Change name, category, description, price, and gradient.
-   gradient:  any Tailwind bg-gradient-to-br from/via/to classes.
-   ──────────────────────────────────────────────────────────── */
-
 export type Category =
   | "All"
   | "Hindu Wedding"
@@ -19,10 +14,11 @@ export interface Template {
   tagline: string;
   description: string;
   price: string;
-  /* CSS values for the invitation preview card background */
-  previewBg: string;
-  previewAccent: string;
-  previewText: string;
+  /* Phone screen rendering */
+  screenBg: string;
+  screenAccent: string;
+  screenText: string;
+  screenNavBg: string;
   motif: "mandala" | "cross" | "khanda" | "crescent" | "kolam" | "ring";
   badge: string;
 }
@@ -36,9 +32,10 @@ export const templates: Template[] = [
     description:
       "Warm terracotta florals and ancient motifs in a sun-drenched editorial layout.",
     price: "₹3,999",
-    previewBg: "linear-gradient(145deg, #F5E6D0 0%, #E8C9A0 100%)",
-    previewAccent: "#8B3A0F",
-    previewText: "#3D1A08",
+    screenBg: "linear-gradient(160deg, #F5E6D0 0%, #E8C9A0 100%)",
+    screenAccent: "#8B3A0F",
+    screenText: "#3D1A08",
+    screenNavBg: "rgba(139,58,15,0.08)",
     motif: "mandala",
     badge: "Hindu Wedding",
   },
@@ -50,9 +47,10 @@ export const templates: Template[] = [
     description:
       "Delicate blush florals, gold script, and a timeless chapel-inspired layout.",
     price: "₹3,999",
-    previewBg: "linear-gradient(145deg, #F9EEF2 0%, #EDCDD8 100%)",
-    previewAccent: "#9C2B4B",
-    previewText: "#4A1528",
+    screenBg: "linear-gradient(160deg, #F9EEF2 0%, #EDCDD8 100%)",
+    screenAccent: "#9C2B4B",
+    screenText: "#4A1528",
+    screenNavBg: "rgba(156,43,75,0.07)",
     motif: "cross",
     badge: "Christian Wedding",
   },
@@ -64,9 +62,10 @@ export const templates: Template[] = [
     description:
       "Deep indigo and gold geometric patterns framing a majestic walima invitation.",
     price: "₹3,999",
-    previewBg: "linear-gradient(145deg, #1E2A5E 0%, #0F1A42 100%)",
-    previewAccent: "#C9A45C",
-    previewText: "#EAD5A5",
+    screenBg: "linear-gradient(160deg, #1E2A5E 0%, #0F1A42 100%)",
+    screenAccent: "#C9A45C",
+    screenText: "#EAD5A5",
+    screenNavBg: "rgba(201,164,92,0.12)",
     motif: "crescent",
     badge: "Muslim Wedding",
   },
@@ -78,9 +77,10 @@ export const templates: Template[] = [
     description:
       "Crisp white space, sage green accents, and a typographic-first save-the-date.",
     price: "₹3,999",
-    previewBg: "linear-gradient(145deg, #F2F5F0 0%, #D9E5D6 100%)",
-    previewAccent: "#3A6349",
-    previewText: "#1E3328",
+    screenBg: "linear-gradient(160deg, #F2F5F0 0%, #D9E5D6 100%)",
+    screenAccent: "#3A6349",
+    screenText: "#1E3328",
+    screenNavBg: "rgba(58,99,73,0.08)",
     motif: "ring",
     badge: "Save the Date",
   },
@@ -92,9 +92,10 @@ export const templates: Template[] = [
     description:
       "Vibrant mango yellow and vermillion with intricate kolam-inspired borders.",
     price: "₹3,999",
-    previewBg: "linear-gradient(145deg, #FDF0C5 0%, #F5D76E 100%)",
-    previewAccent: "#B5350D",
-    previewText: "#5C1A08",
+    screenBg: "linear-gradient(160deg, #FDF0C5 0%, #F5D76E 100%)",
+    screenAccent: "#B5350D",
+    screenText: "#5C1A08",
+    screenNavBg: "rgba(181,53,13,0.08)",
     motif: "kolam",
     badge: "South Indian",
   },
@@ -106,9 +107,10 @@ export const templates: Template[] = [
     description:
       "Saffron and ivory with celestial khanda motifs for a soulful Anand Karaj.",
     price: "₹3,999",
-    previewBg: "linear-gradient(145deg, #FEF0DC 0%, #F5C878 100%)",
-    previewAccent: "#7B3800",
-    previewText: "#3D1C00",
+    screenBg: "linear-gradient(160deg, #FEF0DC 0%, #F5C878 100%)",
+    screenAccent: "#7B3800",
+    screenText: "#3D1C00",
+    screenNavBg: "rgba(123,56,0,0.08)",
     motif: "khanda",
     badge: "Sikh Wedding",
   },

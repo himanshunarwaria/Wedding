@@ -2,49 +2,97 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Eye, ShoppingBag, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { templates, categories, type Category } from "@/data/templates";
-import InvitationPreview from "./InvitationPreview";
-import { OrnamentDivider } from "./Ornament";
 
-/* ── Category badge colors ── */
-const badgeColors: Record<string, string> = {
-  "Hindu Wedding":     "bg-amber-50  text-amber-800  border border-amber-200",
-  "Christian Wedding": "bg-pink-50   text-pink-800   border border-pink-200",
-  "Sikh Wedding":      "bg-orange-50 text-orange-800 border border-orange-200",
-  "Muslim Wedding":    "bg-indigo-50 text-indigo-800 border border-indigo-200",
-  "South Indian":      "bg-yellow-50 text-yellow-800 border border-yellow-200",
-  "Save the Date":     "bg-emerald-50 text-emerald-800 border border-emerald-200",
-};
+const TemplatePhoneScreen = ({
+  screenBg,
+  screenAccent,
+  screenText,
+  tagline,
+}: {
+  screenBg: string;
+  screenAccent: string;
+  screenText: string;
+  tagline: string;
+}) => (
+  <div
+    className="absolute inset-0 flex flex-col items-center pt-10 px-3 pb-5"
+    style={{ background: screenBg }}
+  >
+    <div className="absolute top-3 left-3 right-3 flex justify-between" style={{ fontSize: 6, color: screenText, opacity: 0.45 }}>
+      <span>9:41</span><span>●●●</span>
+    </div>
+    <div className="flex items-center gap-1 w-full mb-2">
+      <div className="flex-1 h-px" style={{ background: `${screenAccent}25` }} />
+      <div className="w-1 h-1 rounded-full" style={{ background: screenAccent, opacity: 0.4 }} />
+      <div className="flex-1 h-px" style={{ background: `${screenAccent}25` }} />
+    </div>
+    <p style={{ fontSize: 6.5, letterSpacing: "0.14em", color: screenAccent, opacity: 0.65, textTransform: "uppercase", marginBottom: 8, fontFamily: "var(--font-sans)" }}>
+      {tagline}
+    </p>
+    <svg viewBox="0 0 28 28" fill="none" style={{ width: 24, height: 24, marginBottom: 8 }}>
+      {[0, 60, 120, 180, 240, 300].map((a) => {
+        const r = (a * Math.PI) / 180;
+        const cx = 14 + 6 * Math.cos(r);
+        const cy = 14 + 6 * Math.sin(r);
+        return <ellipse key={a} cx={cx} cy={cy} rx="3" ry="1.8" fill={screenAccent} opacity="0.35" transform={`rotate(${a} ${cx} ${cy})`} />;
+      })}
+      <circle cx="14" cy="14" r="3" fill={screenAccent} opacity="0.45" />
+      <circle cx="14" cy="14" r="1.2" fill={screenAccent} opacity="0.7" />
+    </svg>
+    <div className="text-center mb-2">
+      <p style={{ fontFamily: "var(--font-serif)", fontSize: 13, color: screenText, fontWeight: 400, lineHeight: 1.2 }}>Priya</p>
+      <p style={{ fontSize: 7, color: screenAccent, opacity: 0.6, margin: "1px 0", letterSpacing: "0.1em" }}>&amp;</p>
+      <p style={{ fontFamily: "var(--font-serif)", fontSize: 13, color: screenText, fontWeight: 400, lineHeight: 1.2 }}>Arjun</p>
+    </div>
+    <div className="flex items-center gap-1 w-full my-1.5">
+      <div className="flex-1 h-px" style={{ background: `${screenAccent}18` }} />
+      <div className="w-0.5 h-0.5 rounded-full" style={{ background: `${screenAccent}35` }} />
+      <div className="flex-1 h-px" style={{ background: `${screenAccent}18` }} />
+    </div>
+    <p style={{ fontFamily: "var(--font-serif)", fontSize: 8, color: screenText, opacity: 0.55, letterSpacing: "0.08em", marginBottom: 8 }}>
+      14 · February · 2026
+    </p>
+    <div className="flex gap-1 w-full px-1 mb-3">
+      {["Mehendi", "Wedding", "Reception"].map((ev) => (
+        <div key={ev} className="flex-1 py-0.5 rounded text-center" style={{ background: `${screenAccent}10`, fontSize: 5.5, color: screenAccent, opacity: 0.8 }}>
+          {ev}
+        </div>
+      ))}
+    </div>
+    <div className="px-3 py-0.5 rounded-full" style={{ background: `${screenAccent}12`, border: `0.5px solid ${screenAccent}25` }}>
+      <span style={{ fontSize: 6.5, color: screenAccent, letterSpacing: "0.06em" }}>RSVP →</span>
+    </div>
+    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full" style={{ background: `${screenText}15` }} />
+  </div>
+);
 
 const containerVariants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.09 } },
+  show: { transition: { staggerChildren: 0.07 } },
+};
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 28, scale: 0.97 },
-  show:  { opacity: 1, y: 0, scale: 1, transition: { duration: 0.52, ease: [0.22, 1, 0.36, 1] } },
-};
+const PHONE_W = 200;
+const PHONE_H = Math.round(PHONE_W * 2.05);
 
 export default function TemplateShowcase() {
-  const [active, setActive] = useState<Category>("All");
+  const [activeCategory, setActiveCategory] = useState<Category>("All");
 
   const filtered =
-    active === "All" ? templates : templates.filter((t) => t.category === active);
+    activeCategory === "All"
+      ? templates
+      : templates.filter((t) => t.category === activeCategory);
 
   return (
-    <section
-      id="templates"
-      className="section relative overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(ellipse 120% 80% at 50% 50%, #F8F0E5 0%, #F3E7D8 55%, #EFE0CA 100%)",
-      }}
-    >
+    <section id="templates" className="section" style={{ background: "var(--bg-2)" }}>
       <div className="section-inner">
 
-        {/* ── Header ── */}
+        {/* Header */}
         <div className="section-header">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -52,171 +100,146 @@ export default function TemplateShowcase() {
             viewport={{ once: true }}
             className="eyebrow mb-4"
           >
-            Template Collection
+            Templates
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-text-main mb-5"
-            style={{ fontSize: "clamp(2rem, 3.8vw, 3.25rem)" }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(2rem, 3.5vw, 3rem)",
+              fontWeight: 400,
+              lineHeight: 1.1,
+              color: "var(--fg)",
+              marginBottom: "1.25rem",
+            }}
           >
-            Designed for every wedding style
+            Handcrafted for every wedding
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.18 }}
-            className="text-text-muted mb-6"
-            style={{ fontSize: "1.0625rem" }}
+            style={{ fontSize: "1.0625rem", color: "var(--fg-muted)" }}
           >
-            Pick a look, personalise the details, and share your invite instantly.
+            Six distinct designs — each crafted for a specific wedding tradition, aesthetic, and mood.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.26 }}
-          >
-            <OrnamentDivider className="max-w-xs mx-auto" />
-          </motion.div>
         </div>
 
-        {/* ── Filter pills ── */}
+        {/* Filter pills */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
           className="flex flex-wrap gap-2 justify-center mb-12"
         >
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActive(cat)}
-              className={`filter-pill ${active === cat ? "active" : ""}`}
+              onClick={() => setActiveCategory(cat)}
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontSize: "0.8125rem",
+                fontWeight: 500,
+                padding: "0.4375rem 1rem",
+                borderRadius: "100px",
+                background: activeCategory === cat ? "var(--fg)" : "white",
+                color: activeCategory === cat ? "white" : "var(--fg-muted)",
+                border: `1.5px solid ${activeCategory === cat ? "var(--fg)" : "var(--border)"}`,
+                cursor: "pointer",
+                transition: "all 0.2s ease",
+                boxShadow: activeCategory === cat ? "0 2px 10px rgba(45,41,38,0.2)" : "none",
+              }}
             >
               {cat}
             </button>
           ))}
         </motion.div>
 
-        {/* ── Template grid ── */}
+        {/* Template grid */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={active}
+            key={activeCategory}
             variants={containerVariants}
             initial="hidden"
             animate="show"
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10"
           >
             {filtered.map((template) => (
-              <motion.article
+              <motion.div
                 key={template.id}
-                variants={cardVariants}
-                className="group overflow-hidden rounded-3xl bg-surface border border-border flex flex-col"
-                style={{
-                  boxShadow: "0 2px 8px rgba(107,30,45,0.04), 0 6px 24px rgba(107,30,45,0.06)",
-                  transition: "box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease",
-                }}
-                whileHover={{
-                  y: -4,
-                  boxShadow: "0 0 0 1.5px #E8D7B6, 0 12px 40px rgba(107,30,45,0.12), 0 24px 60px rgba(107,30,45,0.06)",
-                  borderColor: "#E8D7B6",
-                }}
+                variants={itemVariants}
+                className="group flex flex-col items-center"
               >
-                {/* Preview area */}
-                <div className="relative overflow-hidden">
-                  <InvitationPreview template={template} />
-
-                  {/* Category badge */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <span
-                      className={`text-[10px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm ${
-                        badgeColors[template.badge] ?? "bg-white/80 text-gray-700 border border-gray-200"
-                      }`}
-                    >
-                      {template.badge}
-                    </span>
-                  </div>
-
-                  {/* Hover overlay with Preview button */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <button className="btn-primary text-xs px-5 py-2.5 backdrop-blur-sm">
-                      <Eye size={13} /> Preview invite
-                    </button>
+                {/* Phone */}
+                <div
+                  className="relative mb-6 transition-transform duration-300 group-hover:-translate-y-2"
+                  style={{ filter: "drop-shadow(0 20px 40px rgba(45,41,38,0.14))" }}
+                >
+                  <div className="phone-frame" style={{ width: PHONE_W, height: PHONE_H }}>
+                    <TemplatePhoneScreen
+                      screenBg={template.screenBg}
+                      screenAccent={template.screenAccent}
+                      screenText={template.screenText}
+                      tagline={template.tagline}
+                    />
                   </div>
                 </div>
 
-                {/* Card body */}
-                <div className="flex flex-col flex-1 p-6 gap-3">
-                  {/* Name row */}
-                  <div className="flex items-baseline justify-between gap-3">
-                    <h3
-                      className="font-display text-text-main"
-                      style={{ fontSize: "1.375rem", lineHeight: 1.2 }}
-                    >
-                      {template.name}
-                    </h3>
-                    <div className="text-right shrink-0">
-                      <span
-                        className="font-sans font-bold text-primary"
-                        style={{ fontSize: "1rem" }}
-                      >
-                        {template.price}
-                      </span>
-                    </div>
+                {/* Info */}
+                <div className="text-center w-full max-w-[220px]">
+                  <div
+                    className="inline-block mb-3 rounded-full"
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "0.6875rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.06em",
+                      padding: "0.25rem 0.75rem",
+                      background: "var(--gold-pale)",
+                      color: "var(--gold-hover)",
+                    }}
+                  >
+                    {template.badge}
                   </div>
-
-                  {/* Tagline */}
-                  <p className="eyebrow" style={{ fontSize: "0.6rem", color: "var(--accent)" }}>
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "1.25rem",
+                      fontWeight: 500,
+                      color: "var(--fg)",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    {template.name}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "0.8125rem",
+                      color: "var(--fg-light)",
+                      marginBottom: "1rem",
+                      lineHeight: 1.5,
+                    }}
+                  >
                     {template.tagline}
                   </p>
-
-                  {/* Description */}
-                  <p className="text-text-muted text-sm leading-relaxed flex-1">
-                    {template.description}
-                  </p>
-
-                  {/* Divider */}
-                  <div className="h-px" style={{ background: "var(--border)" }} />
-
-                  {/* Action buttons */}
-                  <div className="flex gap-2.5">
-                    <button className="btn-outline flex-1 justify-center text-xs"
-                            style={{ padding: "0.6rem 0.75rem" }}>
-                      <Eye size={12} /> Preview
-                    </button>
-                    <button className="btn-primary flex-1 justify-center text-xs"
-                            style={{ padding: "0.6rem 0.75rem" }}>
-                      <ShoppingBag size={12} /> Buy Now
+                  <div className="flex items-center justify-center gap-3">
+                    <span style={{ fontFamily: "var(--font-sans)", fontSize: "1rem", fontWeight: 600, color: "var(--fg)" }}>
+                      {template.price}
+                    </span>
+                    <button className="btn-primary" style={{ fontSize: "0.8125rem", padding: "0.5rem 1.125rem" }}>
+                      Preview <ArrowRight size={13} />
                     </button>
                   </div>
                 </div>
-              </motion.article>
+              </motion.div>
             ))}
           </motion.div>
         </AnimatePresence>
-
-        {/* ── Bottom CTA ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-16 flex flex-col items-center gap-4"
-        >
-          <p className="text-text-muted text-sm">
-            New designs drop regularly — be first to know.
-          </p>
-          <button
-            onClick={() => document.querySelector("#newsletter")?.scrollIntoView({ behavior: "smooth" })}
-            className="btn-outline inline-flex items-center gap-2"
-          >
-            Join the waitlist <ArrowRight size={14} />
-          </button>
-        </motion.div>
       </div>
     </section>
   );
