@@ -1,0 +1,181 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Sparkles, Instagram, Twitter, Mail, Heart } from "lucide-react";
+import { OrnamentDivider } from "./Ornament";
+
+/* ── CHANGE BRAND / CONTACT INFO BELOW ── */
+const BRAND   = "InviteBliss";
+const TAGLINE = "Premium wedding invitation websites for every couple.";
+const EMAIL   = "hello@invitebliss.in";
+const YEAR    = new Date().getFullYear();
+
+const footerLinks = {
+  Templates: [
+    { label: "All Templates",     href: "#templates" },
+    { label: "Hindu Wedding",     href: "#templates" },
+    { label: "Christian Wedding", href: "#templates" },
+    { label: "Sikh Wedding",      href: "#templates" },
+    { label: "Save the Date",     href: "#templates" },
+  ],
+  Product: [
+    { label: "Features",          href: "#features" },
+    { label: "How It Works",      href: "#how-it-works" },
+    { label: "Pricing",           href: "#templates" },
+    { label: "FAQ",               href: "#faq" },
+  ],
+  Company: [
+    { label: "About",             href: "#" },
+    { label: "Contact",           href: `mailto:${EMAIL}` },
+    { label: "Privacy Policy",    href: "#" },
+    { label: "Refund Policy",     href: "#" },
+  ],
+};
+
+const socialLinks = [
+  { icon: Instagram, href: "#",              label: "Instagram" },
+  { icon: Twitter,   href: "#",              label: "Twitter"   },
+  { icon: Mail,      href: `mailto:${EMAIL}`, label: "Email"    },
+];
+
+export default function Footer() {
+  const handleNav = (href: string) => {
+    if (href.startsWith("#") && href.length > 1) {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <footer
+      className="relative overflow-hidden"
+      style={{ background: "linear-gradient(170deg, #3A0F19 0%, #2A0B13 100%)" }}
+    >
+      {/* Top wave */}
+      <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ lineHeight: 0 }}>
+        <svg viewBox="0 0 1440 56" preserveAspectRatio="none" className="w-full block" style={{ height: 56 }}>
+          <path d="M0,56 C480,0 960,56 1440,0 L1440,0 L0,0 Z" fill="var(--background)" />
+        </svg>
+      </div>
+
+      <div className="max-w-[1160px] mx-auto px-5 pt-24 pb-10">
+
+        {/* Top ornament */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <OrnamentDivider className="opacity-20" />
+        </motion.div>
+
+        {/* Main grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-14"
+        >
+          {/* Brand column */}
+          <div className="col-span-2 lg:col-span-2">
+            <a
+              href="#"
+              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              className="flex items-center gap-2 mb-3"
+              style={{ color: "white", fontFamily: "var(--font-serif)", fontSize: "1.25rem", fontWeight: 500, textDecoration: "none" }}
+            >
+              <Sparkles size={17} style={{ color: "#C9A45C" }} />
+              {BRAND}
+            </a>
+            <p
+              className="mb-2 italic"
+              style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.875rem", fontFamily: "var(--font-serif)", fontWeight: 300, lineHeight: 1.6 }}
+            >
+              {TAGLINE}
+            </p>
+            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.8125rem" }}>
+              <a href={`mailto:${EMAIL}`} style={{ color: "rgba(201,164,92,0.7)", textDecoration: "none" }}
+                 className="hover:opacity-100 transition-opacity">
+                {EMAIL}
+              </a>
+            </p>
+
+            {/* Social */}
+            <div className="flex items-center gap-2.5 mt-6">
+              {socialLinks.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200"
+                  style={{
+                    background: "rgba(255,255,255,0.06)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    color: "rgba(255,255,255,0.45)",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.background = "#C9A45C";
+                    el.style.borderColor = "#C9A45C";
+                    el.style.color = "#43111B";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.background = "rgba(255,255,255,0.06)";
+                    el.style.borderColor = "rgba(255,255,255,0.1)";
+                    el.style.color = "rgba(255,255,255,0.45)";
+                  }}
+                >
+                  <Icon size={14} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Link columns */}
+          {Object.entries(footerLinks).map(([heading, links]) => (
+            <div key={heading}>
+              <p
+                className="mb-4"
+                style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.6875rem", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase" }}
+              >
+                {heading}
+              </p>
+              <ul className="space-y-2.5">
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={(e) => {
+                        if (link.href.startsWith("#")) { e.preventDefault(); handleNav(link.href); }
+                      }}
+                      style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.875rem", textDecoration: "none", transition: "color 0.15s ease" }}
+                      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#C9A45C"; }}
+                      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.38)"; }}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Bottom bar */}
+        <div
+          className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+        >
+          <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.75rem" }}>
+            &copy; {YEAR} {BRAND}. All rights reserved.
+          </p>
+          <p className="flex items-center gap-1.5" style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.75rem" }}>
+            Made with <Heart size={10} style={{ color: "#C9A45C", fill: "#C9A45C" }} /> for every couple&rsquo;s big day
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
