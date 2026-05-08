@@ -5,8 +5,8 @@ import "./globals.css";
 /* ── Manrope Bold/ExtraBold → --font-serif (used for display headings) ── */
 const manropeDisplay = localFont({
   src: [
-    { path: "../public/font/Manrope-Bold.ttf",      weight: "700", style: "normal" },
-    { path: "../public/font/Manrope-ExtraBold.ttf", weight: "800", style: "normal" },
+    { path: "../public/Manrope-Bold.ttf",      weight: "700", style: "normal" },
+    { path: "../public/Manrope-ExtraBold.ttf", weight: "800", style: "normal" },
   ],
   variable: "--font-serif",
   display: "swap",
@@ -16,11 +16,11 @@ const manropeDisplay = localFont({
 /* ── Manrope Light–Bold → --font-sans (body, UI, labels) ─────────────── */
 const manrope = localFont({
   src: [
-    { path: "../public/font/Manrope-Light.ttf",    weight: "300", style: "normal" },
-    { path: "../public/font/Manrope-Regular.ttf",  weight: "400", style: "normal" },
-    { path: "../public/font/Manrope-Medium.ttf",   weight: "500", style: "normal" },
-    { path: "../public/font/Manrope-SemiBold.ttf", weight: "600", style: "normal" },
-    { path: "../public/font/Manrope-Bold.ttf",     weight: "700", style: "normal" },
+    { path: "../public/Manrope-Light.ttf",    weight: "300", style: "normal" },
+    { path: "../public/Manrope-Regular.ttf",  weight: "400", style: "normal" },
+    { path: "../public/Manrope-Medium.ttf",   weight: "500", style: "normal" },
+    { path: "../public/Manrope-SemiBold.ttf", weight: "600", style: "normal" },
+    { path: "../public/Manrope-Bold.ttf",     weight: "700", style: "normal" },
   ],
   variable: "--font-sans",
   display: "swap",
