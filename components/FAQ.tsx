@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { faqs } from "@/data/faqs";
 
-/* The 10 FAQ IDs to show, in display order */
-const FAQ_IDS = ["1", "13", "5", "3", "7", "6", "11", "2", "9", "10"];
+/* The 12 FAQ IDs to show, in display order */
+const FAQ_IDS = ["15", "1", "13", "5", "3", "7", "6", "11", "2", "9", "16", "10"];
 
 export default function FAQ() {
   const [openId, setOpenId] = useState<string | null>(null);
@@ -39,8 +39,9 @@ export default function FAQ() {
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
-              fontWeight: 400,
+              fontWeight: 800,
               lineHeight: 1.1,
+              letterSpacing: "-0.02em",
               color: "var(--primary)",
               marginBottom: "0.875rem",
             }}
@@ -100,7 +101,7 @@ export default function FAQ() {
                   <div
                     className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center"
                     style={{
-                      background: isOpen ? "rgba(110,31,50,0.08)" : "var(--surface-warm)",
+                      background: isOpen ? "rgba(23,17,14,0.07)" : "var(--surface-warm)",
                       border: `1px solid ${isOpen ? "var(--primary)" : "var(--border)"}`,
                       transition: "background 0.2s ease, border-color 0.2s ease",
                     }}

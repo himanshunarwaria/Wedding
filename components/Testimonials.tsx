@@ -13,13 +13,13 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
         borderRadius: 18,
         overflow: "hidden",
         border: "1px solid var(--border-gold)",
-        boxShadow: "0 2px 12px rgba(110,31,50,0.07), 0 8px 32px rgba(110,31,50,0.05)",
+        boxShadow: "0 2px 12px rgba(23,17,14,0.07), 0 8px 32px rgba(23,17,14,0.05)",
       }}
     >
       {/* Screenshot-style app header */}
       <div
         style={{
-          background: "linear-gradient(135deg, var(--primary), var(--primary-dark))",
+          background: "var(--primary)",
           padding: "0.75rem 1rem",
           display: "flex",
           alignItems: "center",
@@ -175,13 +175,14 @@ export default function Testimonials() {
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
-              fontWeight: 400,
+              fontWeight: 800,
               lineHeight: 1.1,
+              letterSpacing: "-0.02em",
               color: "var(--primary)",
               marginBottom: "0.875rem",
             }}
           >
-            Couples love sharing one beautiful link.
+            Don&apos;t Take Our Word for It — Here&apos;s What Real Couples Are Saying.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}

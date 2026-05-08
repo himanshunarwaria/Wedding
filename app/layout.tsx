@@ -1,11 +1,36 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+
+/* ── Manrope Bold/ExtraBold → --font-serif (used for display headings) ── */
+const manropeDisplay = localFont({
+  src: [
+    { path: "../public/Manrope-Bold.ttf",      weight: "700", style: "normal" },
+    { path: "../public/Manrope-ExtraBold.ttf", weight: "800", style: "normal" },
+  ],
+  variable: "--font-serif",
+  display: "swap",
+  preload: true,
+});
+
+/* ── Manrope Light–Bold → --font-sans (body, UI, labels) ─────────────── */
+const manrope = localFont({
+  src: [
+    { path: "../public/Manrope-Light.ttf",    weight: "300", style: "normal" },
+    { path: "../public/Manrope-Regular.ttf",  weight: "400", style: "normal" },
+    { path: "../public/Manrope-Medium.ttf",   weight: "500", style: "normal" },
+    { path: "../public/Manrope-SemiBold.ttf", weight: "600", style: "normal" },
+    { path: "../public/Manrope-Bold.ttf",     weight: "700", style: "normal" },
+  ],
+  variable: "--font-sans",
+  display: "swap",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: "InviteBliss — Premium Wedding Invite Websites",
   description:
-    "Create a beautiful wedding invitation website in minutes. Choose a handcrafted template, personalize your love story, and share one elegant link with every guest.",
+    "Create a beautiful wedding invitation website in minutes. Choose a handcrafted template, personalise your love story, and share one elegant link with every guest.",
   keywords: [
     "wedding invitation website",
     "digital wedding invite",
@@ -29,26 +54,11 @@ export const metadata: Metadata = {
   },
 };
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${manropeDisplay.variable}`}>
       <body>{children}</body>
     </html>
   );

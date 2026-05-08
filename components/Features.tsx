@@ -1,67 +1,87 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { DollarSign, Users, Image, RefreshCw, Heart, Shield } from "lucide-react";
+import {
+  IndianRupee,
+  Users,
+  Image,
+  RefreshCw,
+  Sparkles,
+  Lock,
+} from "lucide-react";
 import { features } from "@/data/features";
 
-const featureIcons = [DollarSign, Users, Image, RefreshCw, Heart, Shield];
+const featureIcons = [IndianRupee, Users, Image, RefreshCw, Sparkles, Lock];
 
 export default function Features() {
   return (
-    <section id="features" className="section grain" style={{ background: "var(--bg)" }}>
+    <section
+      id="features"
+      className="section grain"
+      style={{ background: "var(--bg)" }}
+    >
       <div className="section-inner">
 
-        {/* Header */}
+        {/* ── Section header ── */}
         <div className="section-header">
           <motion.p
             className="eyebrow mb-4"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             Features
           </motion.p>
+
           <motion.h2
             initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.09, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
-              fontWeight: 400,
+              fontWeight: 800,
               lineHeight: 1.1,
+              letterSpacing: "-0.02em",
               color: "var(--primary)",
               marginBottom: "0.875rem",
             }}
           >
             The Wedding Invite, Reinvented.
           </motion.h2>
+
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.18 }}
+            transition={{ delay: 0.18, duration: 0.5 }}
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "1.0625rem",
               color: "var(--text-muted)",
+              lineHeight: 1.65,
               marginBottom: "1.75rem",
             }}
           >
-            Mobile-first, effortless to share, and more flexible than printed cards or WhatsApp videos.
+            Mobile-first, effortless to share. Costs less than printed cards,
+            but feels far more premium.
           </motion.p>
+
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.28 }}
+            transition={{ delay: 0.28, duration: 0.45 }}
           >
             <button
               className="btn-outline"
               style={{ fontSize: "0.875rem", padding: "0.625rem 1.5rem" }}
               onClick={() =>
-                document.querySelector("#templates")?.scrollIntoView({ behavior: "smooth" })
+                document
+                  .querySelector("#templates")
+                  ?.scrollIntoView({ behavior: "smooth" })
               }
             >
               Choose a template →
@@ -69,39 +89,52 @@ export default function Features() {
           </motion.div>
         </div>
 
-        {/* Feature cards */}
+        {/* ── Feature cards grid ── */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((feature, i) => {
-            const Icon = featureIcons[i] || DollarSign;
+            const Icon = featureIcons[i] ?? IndianRupee;
             return (
               <motion.div
                 key={feature.id}
-                className="card-warm grain-card"
-                initial={{ opacity: 0, y: 24 }}
+                className="grain-card"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
-                transition={{ delay: i * 0.07, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  delay: i * 0.06,
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 style={{
-                  padding: "2rem",
+                  background: "var(--cream-card)",
                   border: "1px solid var(--border-gold)",
-                  boxShadow: "0 2px 12px rgba(110,31,50,0.05), 0 8px 28px rgba(110,31,50,0.04)",
+                  borderRadius: 20,
+                  padding: "2rem",
+                  boxShadow:
+                    "0 2px 12px rgba(23,17,14,0.05), 0 8px 28px rgba(23,17,14,0.04)",
                 }}
               >
-                {/* Icon — gold ring */}
+                {/* Icon container */}
                 <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
+                  className="flex items-center justify-center"
                   style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: 16,
                     background: "var(--gold-faint)",
                     border: "1px solid var(--border-gold)",
+                    marginBottom: "1.25rem",
+                    flexShrink: 0,
                   }}
                 >
                   <Icon size={20} style={{ color: "var(--primary)" }} />
                 </div>
 
+                {/* Title */}
                 <h3
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "1rem",
+                    fontSize: "1.0625rem",
                     fontWeight: 600,
                     color: "var(--text-main)",
                     marginBottom: "0.5rem",
@@ -110,6 +143,8 @@ export default function Features() {
                 >
                   {feature.title}
                 </h3>
+
+                {/* Description */}
                 <p
                   style={{
                     fontFamily: "var(--font-sans)",

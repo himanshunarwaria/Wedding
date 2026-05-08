@@ -46,7 +46,7 @@ export default function Footer() {
   return (
     <footer
       className="relative overflow-hidden"
-      style={{ background: "linear-gradient(170deg, #2A1218 0%, var(--footer-bg) 100%)" }}
+      style={{ background: "var(--footer-bg)" }}
     >
       {/* Top wave — fill from surface-warm */}
       <div className="absolute top-0 left-0 right-0 pointer-events-none" style={{ lineHeight: 0 }}>
@@ -56,7 +56,7 @@ export default function Footer() {
           className="w-full block"
           style={{ height: 56 }}
         >
-          <path d="M0,56 C480,0 960,56 1440,0 L1440,0 L0,0 Z" fill="var(--surface-warm)" />
+          <path d="M0,56 C480,0 960,56 1440,0 L1440,0 L0,0 Z" fill="var(--surface)" />
         </svg>
       </div>
 

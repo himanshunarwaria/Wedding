@@ -11,12 +11,10 @@ interface Row {
 }
 
 const rows: Row[] = [
-  { row: "Cost",             printed: "₹10k–₹25k",       video: "₹3k–₹8k",        ib: "₹3,999 one-time"   },
-  { row: "Customization",    printed: "Limited",           video: "Hard to change",  ib: "Fully editable"    },
-  { row: "Interactivity",    printed: "Static",            video: "View-only",       ib: "Maps, RSVP, music" },
-  { row: "Updating",         printed: "Impossible",        video: "Resend required", ib: "Instant & live"    },
-  { row: "Guest Experience", printed: "Physical card",     video: "Forwarded video", ib: "Premium website"   },
-  { row: "Sharing",          printed: "Physical only",     video: "WhatsApp only",   ib: "One shareable link"},
+  { row: "Cost",          printed: "₹10k–₹25k",   video: "₹3k–₹8k",        ib: "₹3,999 one-time"   },
+  { row: "Customization", printed: "Limited",       video: "Hard to change",  ib: "Fully editable"    },
+  { row: "Interactivity", printed: "Static",        video: "View-only",       ib: "Maps, RSVP, music" },
+  { row: "Updating",      printed: "Impossible",    video: "Resend required", ib: "Instant & live"    },
 ];
 
 export default function Comparison() {
@@ -42,8 +40,9 @@ export default function Comparison() {
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
-              fontWeight: 400,
+              fontWeight: 800,
               lineHeight: 1.1,
+              letterSpacing: "-0.02em",
               color: "var(--primary)",
               marginBottom: "0.875rem",
             }}
@@ -79,7 +78,7 @@ export default function Comparison() {
               border: "1px solid var(--border-gold)",
               borderRadius: 20,
               overflow: "hidden",
-              boxShadow: "0 4px 24px rgba(110,31,50,0.06), 0 0 0 1px rgba(199,161,90,0.06)",
+              boxShadow: "0 4px 24px rgba(23,17,14,0.06), 0 0 0 1px rgba(199,161,90,0.06)",
             }}
           >
             <table className="w-full min-w-[560px]" style={{ borderCollapse: "collapse" }}>
@@ -139,7 +138,7 @@ export default function Comparison() {
                     <div className="flex flex-col items-center gap-1">
                       <div
                         style={{
-                          background: "linear-gradient(135deg, var(--primary), var(--primary-dark))",
+                          background: "var(--primary)",
                           borderRadius: 100,
                           padding: "0.3rem 1rem",
                           display: "inline-block",

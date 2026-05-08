@@ -18,54 +18,28 @@ export default function Newsletter() {
 
   return (
     <>
-      {/* ── Part 1: Emotional CTA ── */}
+      {/* ── Part 1: Final CTA block ── */}
       <section
         className="section grain relative overflow-hidden"
-        style={{ background: "linear-gradient(150deg, #7A1F35 0%, #3A0E19 100%)" }}
+        style={{ background: "var(--primary)" }}
       >
-        {/* Decorative gold ornament SVG */}
-        <svg
-          aria-hidden
-          viewBox="0 0 200 200"
-          fill="none"
-          className="absolute pointer-events-none"
-          style={{
-            width: 320,
-            height: 320,
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            opacity: 0.06,
-          }}
-        >
-          {[0, 30, 60, 90, 120, 150].map((a) => {
-            const rad = (a * Math.PI) / 180;
-            const cx = 100 + 50 * Math.cos(rad);
-            const cy = 100 + 50 * Math.sin(rad);
-            return (
-              <ellipse
-                key={a}
-                cx={cx}
-                cy={cy}
-                rx="28"
-                ry="14"
-                fill="#C7A15A"
-                transform={`rotate(${a} ${cx} ${cy})`}
-              />
-            );
-          })}
-          <circle cx="100" cy="100" r="24" fill="#C7A15A" />
-          <circle cx="100" cy="100" r="10" fill="#C7A15A" opacity="1.5" />
-        </svg>
-
-        {/* Top fade blob */}
+        {/* Ambient gold radial glow */}
         <div
           className="absolute top-0 right-0 pointer-events-none"
           style={{
-            width: 350,
-            height: 350,
+            width: 480,
+            height: 480,
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(199,161,90,0.15) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(185,154,93,0.12) 0%, transparent 65%)",
+          }}
+        />
+        <div
+          className="absolute bottom-0 left-0 pointer-events-none"
+          style={{
+            width: 360,
+            height: 360,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(185,154,93,0.08) 0%, transparent 65%)",
           }}
         />
 
@@ -77,66 +51,57 @@ export default function Newsletter() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-[680px] mx-auto text-center"
           >
+            {/* Ornament */}
+            <div className="ornament-divider justify-center mb-6"
+              style={{ "--ornament-color": "rgba(185,154,93,0.4)" } as React.CSSProperties}
+            >
+              <svg viewBox="0 0 12 12" fill="none" style={{ width: 10, height: 10 }}>
+                <rect x="6" y="0" width="8" height="8" rx="0.5"
+                  fill="var(--gold)" opacity="0.5" transform="rotate(45 6 6)" />
+              </svg>
+            </div>
+
+            <p
+              className="eyebrow mb-5"
+              style={{ color: "var(--gold)", opacity: 0.75 }}
+            >
+              Get Started Today
+            </p>
+
             <h2
               style={{
                 fontFamily: "var(--font-serif)",
-                fontSize: "clamp(2rem, 3.5vw, 3rem)",
-                fontWeight: 400,
-                lineHeight: 1.12,
+                fontSize: "clamp(2.25rem, 4.5vw, 4rem)",
+                fontWeight: 800,
+                lineHeight: 1.08,
+                letterSpacing: "-0.025em",
                 color: "white",
-                marginBottom: "1.25rem",
+                marginBottom: "1rem",
               }}
             >
-              Your wedding invite should feel as special as your wedding.
+              Invite Your Guests in<br />10 Minutes!
             </h2>
+
             <p
               style={{
                 fontFamily: "var(--font-sans)",
                 fontSize: "1.0625rem",
-                color: "rgba(255,255,255,0.72)",
-                lineHeight: 1.7,
-                marginBottom: "2.25rem",
+                color: "rgba(255,255,255,0.55)",
+                letterSpacing: "0.06em",
+                marginBottom: "2.5rem",
+                fontWeight: 500,
               }}
             >
-              Choose a template, personalize it, and share a beautiful invite website today.
+              Choose. Customise. Share.
             </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              <button
-                className="btn-gold"
-                style={{ fontSize: "0.9375rem", padding: "0.875rem 2rem" }}
-                onClick={() => handleNav("#templates")}
-              >
-                Explore Templates
-              </button>
-              <button
-                onClick={() => handleNav("#how-it-works")}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  background: "transparent",
-                  color: "rgba(255,255,255,0.85)",
-                  fontFamily: "var(--font-sans)",
-                  fontSize: "0.9375rem",
-                  fontWeight: 500,
-                  padding: "0.875rem 2rem",
-                  borderRadius: 100,
-                  border: "1.5px solid rgba(255,255,255,0.3)",
-                  cursor: "pointer",
-                  transition: "all 0.22s ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.7)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "white";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.3)";
-                  (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.85)";
-                }}
-              >
-                Preview Demo
-              </button>
-            </div>
+
+            <button
+              className="btn-gold"
+              style={{ fontSize: "0.9375rem", padding: "0.9375rem 2.25rem" }}
+              onClick={() => handleNav("#templates")}
+            >
+              Choose a template →
+            </button>
           </motion.div>
         </div>
       </section>
@@ -182,7 +147,7 @@ export default function Newsletter() {
               >
                 <div
                   className="w-9 h-9 rounded-full flex items-center justify-center"
-                  style={{ background: "rgba(110,31,50,0.1)" }}
+                  style={{ background: "rgba(23,17,14,0.08)" }}
                 >
                   <Check size={17} style={{ color: "var(--primary)" }} />
                 </div>
@@ -204,7 +169,7 @@ export default function Newsletter() {
                 style={{
                   background: "white",
                   border: "1.5px solid var(--border)",
-                  boxShadow: "0 2px 16px rgba(110,31,50,0.08)",
+                  boxShadow: "0 2px 16px rgba(23,17,14,0.08)",
                 }}
               >
                 <input

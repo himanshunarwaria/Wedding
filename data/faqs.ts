@@ -89,4 +89,16 @@ export const faqs: FAQ[] = [
     answer:
       "Yes. You can reach us at hello@invitebliss.in and our team typically responds within a few hours. For common questions, we also have a step-by-step guide that walks you through the entire setup process from purchase to sharing.",
   },
+  {
+    id: "15",
+    question: "How do I get started?",
+    answer:
+      "Browse our collection of templates, choose one that matches your wedding style, and click 'Buy'. After purchase, you'll receive immediate access to the invite editor where you can fill in all your details, upload photos, and publish — all in one sitting.",
+  },
+  {
+    id: "16",
+    question: "Can I purchase now and use it later?",
+    answer:
+      "Absolutely. Your 12-month hosting period begins from the date you publish your invite, not from the date of purchase. Buy a template months in advance, set it up at your own pace, and publish when you're ready.",
+  },
 ];

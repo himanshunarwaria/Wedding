@@ -130,9 +130,9 @@ function StepTwoScreen() {
       <div
         className="mt-3 py-1.5 rounded-full text-center"
         style={{
-          background: "linear-gradient(135deg,#6E1F32,#3A0E19)",
+          background: "var(--primary)",
           fontSize: 7,
-          color: "#fff",
+          color: "var(--bg)",
           fontWeight: 600,
           fontFamily: "var(--font-sans)",
         }}
@@ -271,8 +271,9 @@ export default function HowItWorks() {
             style={{
               fontFamily: "var(--font-serif)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
-              fontWeight: 400,
+              fontWeight: 800,
               lineHeight: 1.1,
+              letterSpacing: "-0.02em",
               color: "var(--primary)",
               marginBottom: "0.875rem",
             }}
