@@ -42,10 +42,10 @@ export default function StickyBar() {
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-0 inset-x-0 z-50"
           style={{
-            background: "rgba(253,248,244,0.94)",
+            background: "rgba(247,247,247,0.96)",
             backdropFilter: "blur(16px) saturate(1.4)",
-            borderTop: "1px solid var(--border)",
-            boxShadow: "0 -4px 24px rgba(45,41,38,0.12)",
+            borderTop: "1px solid #E2E2E2",
+            boxShadow: "0 -2px 16px rgba(0,0,0,0.08)",
           }}
         >
           <div className="max-w-[1160px] mx-auto px-5 py-3.5 flex items-center justify-between gap-4">

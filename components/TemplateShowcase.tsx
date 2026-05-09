@@ -656,7 +656,7 @@ export default function TemplateShowcase() {
   return (
     <section
       id="templates"
-      style={{ background: "#F2F2F2", padding: "6rem 1.25rem" }}
+      style={{ background: "#F7F7F7", borderTop: "1px solid #E2E2E2", padding: "6rem 1.25rem" }}
     >
       <div style={{ maxWidth: 1160, margin: "0 auto" }}>
 

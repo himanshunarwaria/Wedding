@@ -1,30 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
-/* ── Manrope Bold/ExtraBold → --font-serif (used for display headings) ── */
-const manropeDisplay = localFont({
-  src: [
-    { path: "../public/Manrope-Bold.ttf",      weight: "700", style: "normal" },
-    { path: "../public/Manrope-ExtraBold.ttf", weight: "800", style: "normal" },
-  ],
-  variable: "--font-serif",
-  display: "swap",
-  preload: true,
-});
-
-/* ── Manrope Light–Bold → --font-sans (body, UI, labels) ─────────────── */
-const manrope = localFont({
-  src: [
-    { path: "../public/Manrope-Light.ttf",    weight: "300", style: "normal" },
-    { path: "../public/Manrope-Regular.ttf",  weight: "400", style: "normal" },
-    { path: "../public/Manrope-Medium.ttf",   weight: "500", style: "normal" },
-    { path: "../public/Manrope-SemiBold.ttf", weight: "600", style: "normal" },
-    { path: "../public/Manrope-Bold.ttf",     weight: "700", style: "normal" },
-  ],
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-sans",
   display: "swap",
-  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -58,7 +40,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${manropeDisplay.variable}`}>
+    <html lang="en" className={manrope.variable}>
       <body>{children}</body>
     </html>
   );

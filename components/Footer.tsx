@@ -233,7 +233,7 @@ function CTACard() {
 ───────────────────────────────────────────────────────────────── */
 export default function Footer() {
   return (
-    <div style={{ background: "#F2F2F2", borderTop: "1px solid #D8D8D8" }}>
+    <div style={{ background: "#F7F7F7", borderTop: "1px solid #E2E2E2" }}>
       <div
         style={{ maxWidth: 1160, margin: "0 auto", padding: "5rem 1.5rem 0" }}
       >
@@ -431,7 +431,7 @@ export default function Footer() {
           {/* Bottom strip */}
           <div
             style={{
-              borderTop: "1px solid #D8D8D8",
+              borderTop: "1px solid #E2E2E2",
               marginTop: "4rem",
               padding: "1.5rem 0 2rem",
             }}

@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { faqs } from "@/data/faqs";
 
-/* The 12 FAQ IDs to show, in display order */
 const FAQ_IDS = ["15", "1", "13", "5", "3", "7", "6", "11", "2", "9", "16", "10"];
 
 export default function FAQ() {
@@ -18,7 +17,7 @@ export default function FAQ() {
   ) as (typeof faqs)[0][];
 
   return (
-    <section id="faq" className="section grain" style={{ background: "var(--surface)" }}>
+    <section id="faq" className="section" style={{ background: "#FFFFFF", borderTop: "1px solid #E2E2E2" }}>
       <div className="section-inner">
 
         {/* Header */}
@@ -37,12 +36,12 @@ export default function FAQ() {
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               fontWeight: 800,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              color: "var(--primary)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.025em",
+              color: "#111111",
               marginBottom: "0.875rem",
             }}
           >
@@ -56,7 +55,7 @@ export default function FAQ() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "1.0625rem",
-              color: "var(--text-muted)",
+              color: "#666666",
             }}
           >
             Everything you need to know before you begin.
@@ -75,9 +74,9 @@ export default function FAQ() {
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ delay: i * 0.04, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 style={{
-                  borderBottom: "1px solid var(--border-gold)",
-                  borderLeft: isOpen ? "3px solid var(--gold)" : "3px solid transparent",
-                  paddingLeft: isOpen ? "0.875rem" : "0",
+                  borderBottom: "1px solid #E2E2E2",
+                  borderLeft: isOpen ? "2px solid #111111" : "2px solid transparent",
+                  paddingLeft: isOpen ? "1rem" : "0",
                   transition: "border-color 0.2s ease, padding-left 0.2s ease",
                 }}
               >
@@ -91,9 +90,9 @@ export default function FAQ() {
                       fontFamily: "var(--font-sans)",
                       fontSize: "1rem",
                       fontWeight: isOpen ? 600 : 500,
-                      color: isOpen ? "var(--primary)" : "var(--text-main)",
-                      lineHeight: 1.4,
-                      transition: "color 0.2s ease",
+                      color: "#111111",
+                      lineHeight: 1.45,
+                      transition: "font-weight 0.15s ease",
                     }}
                   >
                     {faq.question}
@@ -101,15 +100,15 @@ export default function FAQ() {
                   <div
                     className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center"
                     style={{
-                      background: isOpen ? "rgba(23,17,14,0.07)" : "var(--surface-warm)",
-                      border: `1px solid ${isOpen ? "var(--primary)" : "var(--border)"}`,
+                      background: isOpen ? "#111111" : "#F5F5F5",
+                      border: `1px solid ${isOpen ? "#111111" : "#E2E2E2"}`,
                       transition: "background 0.2s ease, border-color 0.2s ease",
                     }}
                   >
                     {isOpen ? (
-                      <Minus size={13} style={{ color: "var(--primary)" }} />
+                      <Minus size={12} style={{ color: "white" }} />
                     ) : (
-                      <Plus size={13} style={{ color: "var(--text-muted)" }} />
+                      <Plus size={12} style={{ color: "#666666" }} />
                     )}
                   </div>
                 </button>
@@ -120,16 +119,16 @@ export default function FAQ() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                       style={{ overflow: "hidden" }}
                     >
                       <p
                         style={{
                           fontFamily: "var(--font-sans)",
                           fontSize: "0.9375rem",
-                          color: "var(--text-muted)",
-                          lineHeight: 1.7,
-                          paddingBottom: "1.375rem",
+                          color: "#666666",
+                          lineHeight: 1.72,
+                          paddingBottom: "1.5rem",
                         }}
                       >
                         {faq.answer}

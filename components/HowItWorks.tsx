@@ -10,11 +10,11 @@ function StepOneScreen() {
   return (
     <div
       className="absolute inset-0 flex flex-col pt-10 pb-4 px-3"
-      style={{ background: "var(--surface-warm)" }}
+      style={{ background: "#F5F5F5" }}
     >
       <div
         className="absolute top-3 left-3 right-3 flex justify-between"
-        style={{ fontSize: 5.5, color: "var(--text-muted)", opacity: 0.6, fontFamily: "var(--font-sans)" }}
+        style={{ fontSize: 5.5, color: "#666", opacity: 0.6, fontFamily: "var(--font-sans)" }}
       >
         <span>9:41</span>
         <span>●●●</span>
@@ -23,7 +23,7 @@ function StepOneScreen() {
         style={{
           fontSize: 6,
           letterSpacing: "0.14em",
-          color: "var(--gold)",
+          color: "#999",
           textTransform: "uppercase",
           marginBottom: 8,
           fontFamily: "var(--font-sans)",
@@ -40,14 +40,14 @@ function StepOneScreen() {
           <div
             key={t.label}
             className="flex items-center gap-2 rounded-lg overflow-hidden"
-            style={{ background: "white", border: "0.5px solid var(--border)" }}
+            style={{ background: "white", border: "0.5px solid #E2E2E2" }}
           >
             <div className="flex-shrink-0 w-10 h-10" style={{ background: t.bg }} />
             <div>
-              <p style={{ fontSize: 8, fontWeight: 600, color: "var(--text-main)", fontFamily: "var(--font-sans)" }}>
+              <p style={{ fontSize: 8, fontWeight: 600, color: "#111", fontFamily: "var(--font-sans)" }}>
                 {t.label}
               </p>
-              <p style={{ fontSize: 6, color: "var(--text-muted)", fontFamily: "var(--font-sans)" }}>
+              <p style={{ fontSize: 6, color: "#888", fontFamily: "var(--font-sans)" }}>
                 {t.sub}
               </p>
             </div>
@@ -62,7 +62,7 @@ function StepOneScreen() {
       </div>
       <div
         className="absolute bottom-2.5 left-1/2 -translate-x-1/2"
-        style={{ width: 24, height: 2, borderRadius: 2, background: "rgba(36,23,20,0.12)" }}
+        style={{ width: 24, height: 2, borderRadius: 2, background: "rgba(0,0,0,0.1)" }}
       />
     </div>
   );
@@ -77,7 +77,7 @@ function StepTwoScreen() {
     >
       <div
         className="absolute top-3 left-3 right-3 flex justify-between"
-        style={{ fontSize: 5.5, color: "var(--text-muted)", opacity: 0.6, fontFamily: "var(--font-sans)" }}
+        style={{ fontSize: 5.5, color: "#666", opacity: 0.6, fontFamily: "var(--font-sans)" }}
       >
         <span>9:41</span>
         <span>●●●</span>
@@ -86,7 +86,7 @@ function StepTwoScreen() {
         style={{
           fontSize: 6,
           letterSpacing: "0.14em",
-          color: "var(--gold)",
+          color: "#999",
           textTransform: "uppercase",
           marginBottom: 10,
           fontFamily: "var(--font-sans)",
@@ -105,7 +105,7 @@ function StepTwoScreen() {
             <p
               style={{
                 fontSize: 5.5,
-                color: "var(--text-muted)",
+                color: "#888",
                 marginBottom: 1.5,
                 fontFamily: "var(--font-sans)",
               }}
@@ -115,10 +115,10 @@ function StepTwoScreen() {
             <div
               className="rounded-md px-2 py-1.5"
               style={{
-                background: "var(--surface-warm)",
-                border: "0.5px solid var(--border)",
+                background: "#F5F5F5",
+                border: "0.5px solid #E2E2E2",
                 fontSize: 7.5,
-                color: "var(--text-main)",
+                color: "#111",
                 fontFamily: "var(--font-sans)",
               }}
             >
@@ -130,9 +130,9 @@ function StepTwoScreen() {
       <div
         className="mt-3 py-1.5 rounded-full text-center"
         style={{
-          background: "var(--primary)",
+          background: "#111111",
           fontSize: 7,
-          color: "var(--bg)",
+          color: "white",
           fontWeight: 600,
           fontFamily: "var(--font-sans)",
         }}
@@ -141,7 +141,7 @@ function StepTwoScreen() {
       </div>
       <div
         className="absolute bottom-2.5 left-1/2 -translate-x-1/2"
-        style={{ width: 24, height: 2, borderRadius: 2, background: "rgba(36,23,20,0.12)" }}
+        style={{ width: 24, height: 2, borderRadius: 2, background: "rgba(0,0,0,0.1)" }}
       />
     </div>
   );
@@ -152,11 +152,11 @@ function StepThreeScreen() {
   return (
     <div
       className="absolute inset-0 flex flex-col pt-10 pb-4 px-3"
-      style={{ background: "var(--surface-warm)" }}
+      style={{ background: "#F5F5F5" }}
     >
       <div
         className="absolute top-3 left-3 right-3 flex justify-between"
-        style={{ fontSize: 5.5, color: "var(--text-muted)", opacity: 0.6, fontFamily: "var(--font-sans)" }}
+        style={{ fontSize: 5.5, color: "#666", opacity: 0.6, fontFamily: "var(--font-sans)" }}
       >
         <span>9:41</span>
         <span>●●●</span>
@@ -165,7 +165,7 @@ function StepThreeScreen() {
         style={{
           fontSize: 6,
           letterSpacing: "0.14em",
-          color: "var(--gold)",
+          color: "#999",
           textTransform: "uppercase",
           marginBottom: 8,
           fontFamily: "var(--font-sans)",
@@ -176,12 +176,12 @@ function StepThreeScreen() {
 
       <div
         className="rounded-lg p-2 mb-3"
-        style={{ background: "white", border: "0.5px solid var(--border)" }}
+        style={{ background: "white", border: "0.5px solid #E2E2E2" }}
       >
-        <p style={{ fontSize: 6, color: "var(--text-muted)", marginBottom: 2, fontFamily: "var(--font-sans)" }}>
+        <p style={{ fontSize: 6, color: "#888", marginBottom: 2, fontFamily: "var(--font-sans)" }}>
           Your invite link
         </p>
-        <p style={{ fontSize: 7, color: "var(--gold)", fontFamily: "var(--font-sans)", fontWeight: 600 }}>
+        <p style={{ fontSize: 7, color: "#111", fontFamily: "var(--font-sans)", fontWeight: 600 }}>
           invitebliss.in/priya-arjun
         </p>
       </div>
@@ -190,13 +190,13 @@ function StepThreeScreen() {
         {[
           { icon: "💬", name: "Share on WhatsApp",  color: "#25D366" },
           { icon: "📷", name: "Share on Instagram", color: "#E1306C" },
-          { icon: "✉️", name: "Send via Email",     color: "var(--gold)" },
-          { icon: "📋", name: "Copy link",          color: "var(--text-muted)" },
+          { icon: "✉️", name: "Send via Email",     color: "#666" },
+          { icon: "📋", name: "Copy link",          color: "#888" },
         ].map((s) => (
           <div
             key={s.name}
             className="flex items-center gap-2 rounded-md px-2 py-1.5"
-            style={{ background: "white", border: "0.5px solid var(--border)" }}
+            style={{ background: "white", border: "0.5px solid #E2E2E2" }}
           >
             <span style={{ fontSize: 9 }}>{s.icon}</span>
             <span
@@ -214,7 +214,7 @@ function StepThreeScreen() {
       </div>
       <div
         className="absolute bottom-2.5 left-1/2 -translate-x-1/2"
-        style={{ width: 24, height: 2, borderRadius: 2, background: "rgba(36,23,20,0.12)" }}
+        style={{ width: 24, height: 2, borderRadius: 2, background: "rgba(0,0,0,0.1)" }}
       />
     </div>
   );
@@ -249,7 +249,7 @@ export default function HowItWorks() {
     <section
       id="how-it-works"
       className="section"
-      style={{ background: "linear-gradient(180deg, var(--surface-warm) 0%, var(--bg) 100%)" }}
+      style={{ background: "#FFFFFF", borderTop: "1px solid #E2E2E2" }}
     >
       <div className="section-inner">
 
@@ -269,12 +269,12 @@ export default function HowItWorks() {
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               fontWeight: 800,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              color: "var(--primary)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.025em",
+              color: "#111111",
               marginBottom: "0.875rem",
             }}
           >
@@ -288,7 +288,7 @@ export default function HowItWorks() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "1.0625rem",
-              color: "var(--text-muted)",
+              color: "#666666",
             }}
           >
             Easily change text, photos, events, colors, and make your love story the star.
@@ -314,7 +314,7 @@ export default function HowItWorks() {
                 {/* Phone mockup */}
                 <div
                   className="flex-shrink-0"
-                  style={{ filter: "drop-shadow(0 24px 48px rgba(36,23,20,0.14))" }}
+                  style={{ filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))" }}
                 >
                   <div className="phone-frame" style={{ width: PHONE_W, height: PHONE_H }}>
                     <Screen />
@@ -323,26 +323,32 @@ export default function HowItWorks() {
 
                 {/* Copy */}
                 <div className="flex flex-col gap-5 max-w-[480px] text-center lg:text-left items-center lg:items-start">
+                  {/* Step number */}
                   <div>
                     <span
                       style={{
-                        fontFamily: "var(--font-serif)",
-                        fontSize: "3.5rem",
-                        fontWeight: 400,
-                        color: "var(--gold)",
+                        fontFamily: "var(--font-sans)",
+                        fontSize: "3rem",
+                        fontWeight: 800,
+                        color: "#E8E8E8",
                         lineHeight: 1,
-                        opacity: 0.7,
+                        letterSpacing: "-0.04em",
                       }}
                     >
                       {step.number}
                     </span>
                   </div>
+
+                  {/* Thin rule */}
+                  <div style={{ width: 32, height: 2, background: "#111111", borderRadius: 2 }} />
+
                   <h3
                     style={{
-                      fontFamily: "var(--font-serif)",
-                      fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
-                      fontWeight: 400,
-                      color: "var(--text-main)",
+                      fontFamily: "var(--font-sans)",
+                      fontSize: "clamp(1.375rem, 2.5vw, 1.875rem)",
+                      fontWeight: 700,
+                      letterSpacing: "-0.02em",
+                      color: "#111111",
                       lineHeight: 1.2,
                     }}
                   >
@@ -352,8 +358,8 @@ export default function HowItWorks() {
                     style={{
                       fontFamily: "var(--font-sans)",
                       fontSize: "1.0625rem",
-                      color: "var(--text-muted)",
-                      lineHeight: 1.7,
+                      color: "#666666",
+                      lineHeight: 1.72,
                     }}
                   >
                     {step.description}

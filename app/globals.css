@@ -3,44 +3,47 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────────
-   Design tokens — warm luxury palette
+   Design tokens — premium minimal palette
 ───────────────────────────────────────────── */
 :root {
   /* Backgrounds */
-  --bg:           #F8F1E7;
-  --bg-soft:      #FBF6EF;
-  --surface:      #FFFDF8;
-  --surface-warm: #EFE2D0;
-  --cream-card:   #FFF9F0;
+  --bg:           #F7F7F7;
+  --bg-soft:      #FAFAFA;
+  --surface:      #FFFFFF;
+  --surface-warm: #F5F5F5;
+  --cream-card:   #FFFFFF;
 
   /* Brand */
-  --primary:      #17110E;
-  --primary-soft: #2A211D;
+  --primary:      #111111;
+  --primary-soft: #333333;
 
-  /* Gold */
-  --gold:         #B99A5D;
-  --gold-soft:    #E6D4B2;
-  --gold-faint:   #F2E8D0;
-  --champagne:    #E2C97E;
+  /* Accent — repurposed from warm gold to neutral grey */
+  --gold:         #999999;
+  --gold-soft:    #DDDDDD;
+  --gold-faint:   #F0F0F0;
+  --champagne:    #E8E8E8;
 
   /* Typography */
-  --text-main:    #18120F;
-  --text-muted:   #6F625B;
-  --text-light:   #9E9089;
+  --text-main:    #111111;
+  --text-muted:   #666666;
+  --text-light:   #999999;
 
   /* Borders */
-  --border:       #E4D5C4;
-  --border-gold:  #D4C090;
+  --border:       #E2E2E2;
+  --border-gold:  #D8D8D8;
 
   /* Footer */
-  --footer-bg:    #17110E;
+  --footer-bg:    #111111;
 
   /* Legacy aliases kept for StickyBar */
-  --fg:           #18120F;
-  --fg-muted:     #6F625B;
-  --fg-light:     #9E9089;
-  --bg-2:         #EFE2D0;
-  --border-light: #EAD8C4;
+  --fg:           #111111;
+  --fg-muted:     #666666;
+  --fg-light:     #999999;
+  --bg-2:         #F5F5F5;
+  --border-light: #E8E8E8;
+
+  /* --font-serif aliases --font-sans (both are Manrope) */
+  --font-serif:   var(--font-sans);
 }
 
 /* ─────────────────────────────────────────────
@@ -68,8 +71,8 @@ body {
 ───────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--gold-soft); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+::-webkit-scrollbar-thumb { background: #D0D0D0; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #AAAAAA; }
 
 /* ─────────────────────────────────────────────
    Typography helpers
@@ -77,97 +80,83 @@ body {
 .eyebrow {
   font-family: var(--font-sans);
   font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #999999;
 }
 
 /* ─────────────────────────────────────────────
    Buttons
 ───────────────────────────────────────────── */
 
-/* Primary — dark pill with cream text (Missing Piece style) */
+/* Primary — clean black pill */
 .btn-primary {
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--primary);
-  color: var(--bg);
+  background: #111111;
+  color: white;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  padding: 0.875rem 2rem;
+  padding: 0.75rem 1.75rem;
   border-radius: 100px;
   border: none;
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
-  transition: background 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
-  box-shadow: 0 2px 12px rgba(23,17,14,0.18);
+  transition: opacity 0.18s ease, transform 0.15s ease;
 }
-.btn-primary:hover {
-  background: var(--primary-soft);
-  box-shadow: 0 6px 24px rgba(23,17,14,0.25);
-  transform: translateY(-1px);
-}
-.btn-primary:active { transform: translateY(0); }
+.btn-primary:hover  { opacity: 0.8; transform: translateY(-1px); }
+.btn-primary:active { opacity: 1;   transform: translateY(0); }
 
-/* Outline — cream background with dark border */
+/* Outline — clean bordered pill */
 .btn-outline {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  color: var(--text-main);
+  color: #111111;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 500;
-  padding: 0.875rem 2rem;
+  padding: 0.75rem 1.75rem;
   border-radius: 100px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid #D0D0D0;
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
-  transition: all 0.22s ease;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.15s ease;
 }
-.btn-outline:hover {
-  border-color: var(--text-main);
-  background: var(--cream-card);
-  transform: translateY(-1px);
-}
+.btn-outline:hover  { border-color: #111111; background: #F5F5F5; transform: translateY(-1px); }
 .btn-outline:active { transform: translateY(0); }
 
-/* Gold — warm gold pill */
+/* Gold — kept for compatibility, now maps to primary style */
 .btn-gold {
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--gold);
-  color: var(--primary);
+  background: #111111;
+  color: white;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0.01em;
-  padding: 0.875rem 2rem;
+  padding: 0.75rem 1.75rem;
   border-radius: 100px;
   border: none;
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
-  transition: filter 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
-  box-shadow: 0 4px 14px rgba(185,154,93,0.35);
+  transition: opacity 0.18s ease, transform 0.15s ease;
 }
-.btn-gold:hover {
-  filter: brightness(1.06);
-  box-shadow: 0 8px 28px rgba(185,154,93,0.5);
-  transform: translateY(-1px);
-}
+.btn-gold:hover  { opacity: 0.8; transform: translateY(-1px); }
 .btn-gold:active { transform: translateY(0); }
 
 /* ─────────────────────────────────────────────
@@ -178,7 +167,7 @@ body {
   position: relative;
 }
 @media (min-width: 640px)  { .section { padding: 6.5rem 1.5rem; } }
-@media (min-width: 768px)  { .section { padding: 8.5rem 2rem; } }
+@media (min-width: 768px)  { .section { padding: 8rem 2rem; } }
 @media (min-width: 1024px) { .section { padding: 9rem 2.5rem; } }
 
 .section-inner {
@@ -228,9 +217,9 @@ body {
   background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
   box-shadow:
     0 0 0 1px rgba(255,255,255,0.07),
-    0 2px 8px rgba(0,0,0,0.28),
-    0 20px 56px rgba(0,0,0,0.22),
-    0 40px 96px rgba(0,0,0,0.13);
+    0 2px 8px rgba(0,0,0,0.18),
+    0 20px 56px rgba(0,0,0,0.16),
+    0 40px 96px rgba(0,0,0,0.1);
   overflow: hidden;
   flex-shrink: 0;
 }
@@ -254,7 +243,7 @@ body {
   left: 0;
   right: 45%;
   height: 40%;
-  background: linear-gradient(135deg, rgba(255,255,255,0.055) 0%, transparent 60%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
   border-radius: 36px 0 0 0;
   z-index: 15;
   pointer-events: none;
@@ -264,28 +253,28 @@ body {
    Card styles
 ───────────────────────────────────────────── */
 .card-warm {
-  background: var(--cream-card);
+  background: white;
   border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: 0 1px 8px rgba(23,17,14,0.05), 0 6px 24px rgba(23,17,14,0.04);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .card-gold-border {
   border: 1px solid var(--border-gold);
-  box-shadow: 0 1px 8px rgba(23,17,14,0.04), 0 6px 24px rgba(23,17,14,0.03);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
 .template-card-hover {
-  transition: transform 0.32s ease, box-shadow 0.32s ease;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
 }
 .template-card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 48px rgba(23,17,14,0.12), 0 4px 16px rgba(23,17,14,0.07);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
 }
 
 /* ─────────────────────────────────────────────
-   Grain overlay
+   Grain overlay — minimal opacity in clean theme
 ───────────────────────────────────────────── */
 .grain { position: relative; }
 .grain::after {
@@ -294,7 +283,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.042;
+  opacity: 0.008;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
 
@@ -305,7 +294,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.024;
+  opacity: 0.005;
   border-radius: inherit;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
@@ -325,11 +314,25 @@ body {
   display: block;
   height: 1px;
   width: 48px;
-  background: var(--gold);
-  opacity: 0.4;
+  background: #D0D0D0;
 }
 
 /* ─────────────────────────────────────────────
    Input
 ───────────────────────────────────────────── */
-input::placeholder { color: var(--text-muted); opacity: 1; }
+input::placeholder { color: var(--text-light); opacity: 1; }
+
+/* ─────────────────────────────────────────────
+   Keyframes
+───────────────────────────────────────────── */
+@keyframes marquee     { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); filter: blur(4px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}

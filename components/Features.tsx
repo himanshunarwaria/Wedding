@@ -17,8 +17,8 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="section grain"
-      style={{ background: "var(--bg)" }}
+      className="section"
+      style={{ background: "#F7F7F7", borderTop: "1px solid #E2E2E2" }}
     >
       <div className="section-inner">
 
@@ -40,12 +40,12 @@ export default function Features() {
             viewport={{ once: true }}
             transition={{ delay: 0.09, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               fontWeight: 800,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              color: "var(--primary)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.025em",
+              color: "#111111",
               marginBottom: "0.875rem",
             }}
           >
@@ -60,7 +60,7 @@ export default function Features() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "1.0625rem",
-              color: "var(--text-muted)",
+              color: "#666666",
               lineHeight: 1.65,
               marginBottom: "1.75rem",
             }}
@@ -90,13 +90,12 @@ export default function Features() {
         </div>
 
         {/* ── Feature cards grid ── */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((feature, i) => {
             const Icon = featureIcons[i] ?? IndianRupee;
             return (
               <motion.div
                 key={feature.id}
-                className="grain-card"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
@@ -106,37 +105,38 @@ export default function Features() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 style={{
-                  background: "var(--cream-card)",
-                  border: "1px solid var(--border-gold)",
+                  background: "white",
+                  border: "1px solid #E2E2E2",
                   borderRadius: 20,
-                  padding: "2rem",
-                  boxShadow:
-                    "0 2px 12px rgba(23,17,14,0.05), 0 8px 28px rgba(23,17,14,0.04)",
+                  padding: "1.875rem",
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+                  transition: "box-shadow 0.25s ease, transform 0.25s ease",
                 }}
+                whileHover={{ y: -3, boxShadow: "0 8px 32px rgba(0,0,0,0.08)" }}
               >
                 {/* Icon container */}
                 <div
                   className="flex items-center justify-center"
                   style={{
-                    width: 48,
-                    height: 48,
-                    borderRadius: 16,
-                    background: "var(--gold-faint)",
-                    border: "1px solid var(--border-gold)",
+                    width: 44,
+                    height: 44,
+                    borderRadius: 12,
+                    background: "#F5F5F5",
+                    border: "1px solid #E2E2E2",
                     marginBottom: "1.25rem",
                     flexShrink: 0,
                   }}
                 >
-                  <Icon size={20} style={{ color: "var(--primary)" }} />
+                  <Icon size={18} style={{ color: "#111111" }} />
                 </div>
 
                 {/* Title */}
                 <h3
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "1.0625rem",
-                    fontWeight: 600,
-                    color: "var(--text-main)",
+                    fontSize: "1rem",
+                    fontWeight: 700,
+                    color: "#111111",
                     marginBottom: "0.5rem",
                     lineHeight: 1.35,
                   }}
@@ -149,10 +149,10 @@ export default function Features() {
                   style={{
                     fontFamily: "var(--font-sans)",
                     fontSize: "0.875rem",
-                    color: "var(--text-muted)",
-                    lineHeight: 1.6,
+                    color: "#666666",
+                    lineHeight: 1.65,
                     display: "-webkit-box",
-                    WebkitLineClamp: 2,
+                    WebkitLineClamp: 3,
                     WebkitBoxOrient: "vertical",
                     overflow: "hidden",
                   }}

@@ -14,23 +14,30 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="section grain" style={{ background: "var(--surface-warm)" }}>
+    <section
+      className="section"
+      style={{ background: "#F7F7F7", borderTop: "1px solid #E2E2E2" }}
+    >
       <div className="section-inner">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-[560px] mx-auto text-center"
+          className="max-w-[540px] mx-auto text-center"
         >
+          <p className="eyebrow" style={{ marginBottom: "1rem" }}>
+            Stay Updated
+          </p>
+
           <h2
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "clamp(1.625rem, 2.5vw, 2.25rem)",
               fontWeight: 800,
-              lineHeight: 1.2,
-              letterSpacing: "-0.02em",
-              color: "var(--primary)",
+              lineHeight: 1.12,
+              letterSpacing: "-0.025em",
+              color: "#111111",
               marginBottom: "0.75rem",
             }}
           >
@@ -40,8 +47,8 @@ export default function Newsletter() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "1rem",
-              color: "var(--text-muted)",
-              marginBottom: "1.875rem",
+              color: "#666666",
+              marginBottom: "2rem",
             }}
           >
             We release new templates seasonally — get early access.
@@ -55,16 +62,16 @@ export default function Newsletter() {
             >
               <div
                 className="w-9 h-9 rounded-full flex items-center justify-center"
-                style={{ background: "rgba(23,17,14,0.08)" }}
+                style={{ background: "#111111" }}
               >
-                <Check size={17} style={{ color: "var(--primary)" }} />
+                <Check size={16} style={{ color: "white" }} />
               </div>
               <p
                 style={{
                   fontFamily: "var(--font-sans)",
                   fontSize: "1rem",
-                  fontWeight: 500,
-                  color: "var(--primary)",
+                  fontWeight: 600,
+                  color: "#111111",
                 }}
               >
                 You&rsquo;re on the list!
@@ -76,8 +83,8 @@ export default function Newsletter() {
               className="flex items-center gap-2 p-1.5 rounded-full"
               style={{
                 background: "white",
-                border: "1.5px solid var(--border)",
-                boxShadow: "0 2px 16px rgba(23,17,14,0.08)",
+                border: "1.5px solid #E2E2E2",
+                boxShadow: "0 1px 8px rgba(0,0,0,0.05)",
               }}
             >
               <input
@@ -93,7 +100,7 @@ export default function Newsletter() {
                   background: "transparent",
                   fontFamily: "var(--font-sans)",
                   fontSize: "0.9375rem",
-                  color: "var(--text-main)",
+                  color: "#111111",
                   padding: "0.5rem 1rem",
                   minWidth: 0,
                 }}
@@ -112,7 +119,7 @@ export default function Newsletter() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "0.75rem",
-              color: "var(--text-muted)",
+              color: "#999999",
               marginTop: "1rem",
             }}
           >

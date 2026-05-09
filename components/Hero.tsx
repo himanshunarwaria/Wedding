@@ -218,7 +218,7 @@ function TemplateScreen({
    Phone cluster configuration — 9 phones
 ────────────────────────────────────────────────────────────────── */
 const PHONE_W = 216;
-const PHONE_H = Math.round(PHONE_W * 2.1); // ~454px
+const PHONE_H = Math.round(PHONE_W * 2.1);
 
 interface PhoneConfig {
   id: string;
@@ -375,14 +375,11 @@ const phones: PhoneConfig[] = [
   },
 ];
 
-const mobilePhones = phones.filter((p) => !p.hideMobile); // p4, p5, p6
+const mobilePhones = phones.filter((p) => !p.hideMobile);
 const mobileScales = [0.83, 0.96, 0.83];
 const mobileRotates = [-9, 0, 9];
 const mobileYOffsets = [22, 0, 22];
 
-/* ──────────────────────────────────────────────────────────────────
-   Stagger variants for the text block
-────────────────────────────────────────────────────────────────── */
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 24, filter: "blur(6px)" },
   animate: { opacity: 1, y: 0, filter: "blur(0px)" },
@@ -399,45 +396,27 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden grain"
+      className="relative overflow-hidden"
       style={{
         minHeight: "100vh",
-        background:
-          "radial-gradient(ellipse 110% 60% at 50% 15%, #F0E4CC 0%, var(--bg) 50%)",
+        background: "#F7F7F7",
       }}
     >
-      {/* Warm ambient blobs */}
+      {/* Thin top rule below navbar */}
       <div
         aria-hidden
-        className="absolute pointer-events-none"
         style={{
-          top: -140,
-          left: -100,
-          width: 560,
-          height: 560,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, #EBC5C5 0%, transparent 70%)",
-          opacity: 0.28,
-          filter: "blur(64px)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute pointer-events-none"
-        style={{
-          top: "4%",
-          right: -90,
-          width: 440,
-          height: 440,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, var(--champagne) 0%, transparent 70%)",
-          opacity: 0.3,
-          filter: "blur(60px)",
+          position: "absolute",
+          top: 64,
+          left: 0,
+          right: 0,
+          height: 1,
+          background: "#E2E2E2",
+          zIndex: 2,
         }}
       />
 
-      {/* ── PART A: Editorial text block ── */}
+      {/* ── Editorial text block ── */}
       <div
         className="relative z-10 flex flex-col items-center text-center"
         style={{
@@ -446,59 +425,26 @@ export default function Hero() {
           paddingRight: "1.25rem",
         }}
       >
-        {/* Ornament divider */}
-        <motion.div
-          className="ornament-divider"
-          initial={{ opacity: 0, scaleX: 0.3 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.65, delay: 0.04, ease: [0.22, 1, 0.36, 1] }}
-          style={{ marginBottom: "1.25rem" }}
-        >
-          <span
-            style={{ color: "var(--gold)", fontSize: "0.6875rem", lineHeight: 1 }}
-          >
-            ✦
-          </span>
-        </motion.div>
-
         {/* Eyebrow */}
         <motion.p
           className="eyebrow"
-          {...fadeUp(0.14)}
-          style={{ marginBottom: "1.5rem" }}
+          {...fadeUp(0.1)}
+          style={{ marginBottom: "1.25rem" }}
         >
-          I n t r o d u c i n g
-        </motion.p>
-
-        {/* Pain line */}
-        <motion.p
-          {...fadeUp(0.26)}
-          style={{
-            fontFamily: "var(--font-sans)",
-            fontStyle: "italic",
-            fontWeight: 300,
-            color: "var(--text-muted)",
-            fontSize: "1rem",
-            maxWidth: 560,
-            margin: "0 auto 1.5rem",
-            lineHeight: 1.6,
-          }}
-        >
-          Weddings are expensive and hard to manage. We make one part effortless
-          — your invite.
+          Introducing
         </motion.p>
 
         {/* H1 */}
         <motion.h1
-          {...fadeUp(0.38)}
+          {...fadeUp(0.24)}
           style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "clamp(3.25rem, 6vw, 6.5rem)",
+            fontFamily: "var(--font-sans)",
+            fontSize: "clamp(2.75rem, 5.5vw, 5.5rem)",
             fontWeight: 800,
-            lineHeight: 1.03,
+            lineHeight: 1.04,
             letterSpacing: "-0.03em",
-            color: "var(--text-main)",
-            maxWidth: 900,
+            color: "#111111",
+            maxWidth: 820,
             margin: "0 auto 1.5rem",
           }}
         >
@@ -507,66 +453,47 @@ export default function Hero() {
 
         {/* Subheading */}
         <motion.p
-          {...fadeUp(0.5)}
+          {...fadeUp(0.38)}
           style={{
             fontFamily: "var(--font-sans)",
             fontSize: "1.0625rem",
-            color: "var(--text-muted)",
-            maxWidth: 520,
+            fontWeight: 400,
+            color: "#666666",
+            maxWidth: 480,
             lineHeight: 1.72,
             margin: "0 auto 2.5rem",
           }}
         >
-          Easy to customise. Effortless to share. Designed beautifully for your
-          big day.
+          Easy-to-customise, Effortless to Share.
+          <br />
+          Website Templates for your Big Day.
         </motion.p>
 
-        {/* CTA buttons */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.62, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, delay: 0.52, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-wrap gap-3 justify-center"
         >
           <button
             onClick={() => handleScroll("#templates")}
             className="btn-primary"
-            style={{ fontSize: "0.9375rem", padding: "0.9375rem 2.125rem" }}
+            style={{ fontSize: "0.9375rem" }}
           >
-            Explore Templates <ArrowRight size={15} />
+            Choose a template <ArrowRight size={15} />
           </button>
           <button
             onClick={() => handleScroll("#templates")}
-            style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: "0.9375rem",
-              color: "var(--text-muted)",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              textDecoration: "underline",
-              textDecorationColor: "transparent",
-              textUnderlineOffset: "4px",
-              transition: "color 0.18s ease, text-decoration-color 0.18s ease",
-              padding: "0.9375rem 0.5rem",
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLButtonElement;
-              el.style.color = "var(--text-main)";
-              el.style.textDecorationColor = "var(--text-main)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLButtonElement;
-              el.style.color = "var(--text-muted)";
-              el.style.textDecorationColor = "transparent";
-            }}
+            className="btn-outline"
+            style={{ fontSize: "0.9375rem" }}
           >
-            Preview Demo →
+            Preview Demo
           </button>
         </motion.div>
       </div>
 
-      {/* ── PART B: Desktop phone cluster ── */}
+      {/* ── Desktop phone cluster ── */}
       <div
         className="hidden md:block"
         style={{
@@ -579,23 +506,6 @@ export default function Hero() {
           zIndex: 5,
         }}
       >
-        {/* Ambient glow */}
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            bottom: -50,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: 720,
-            height: 240,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(ellipse, rgba(185,154,93,0.15) 0%, transparent 70%)",
-            filter: "blur(32px)",
-          }}
-        />
-
         {phones.map((phone, i) => {
           const w = Math.round(PHONE_W * phone.scale);
           const h = Math.round(PHONE_H * phone.scale);
@@ -607,9 +517,7 @@ export default function Hero() {
           return (
             <motion.div
               key={phone.id}
-              animate={{
-                y: [phone.yOffset, phone.yOffset - 13, phone.yOffset],
-              }}
+              animate={{ y: [phone.yOffset, phone.yOffset - 13, phone.yOffset] }}
               transition={{
                 y: {
                   repeat: Infinity,
@@ -640,10 +548,6 @@ export default function Hero() {
                   width: w,
                   height: h,
                   transform: `rotate(${phone.rotate}deg)`,
-                  boxShadow:
-                    phone.scale === 1.0
-                      ? "0 4px 16px rgba(0,0,0,0.4), 0 32px 90px rgba(0,0,0,0.32), 0 64px 130px rgba(0,0,0,0.18)"
-                      : "0 2px 10px rgba(0,0,0,0.32), 0 22px 64px rgba(0,0,0,0.26), 0 44px 110px rgba(0,0,0,0.15)",
                 }}
               >
                 <TemplateScreen
@@ -659,28 +563,11 @@ export default function Hero() {
         })}
       </div>
 
-      {/* ── PART B: Mobile phone row ── */}
+      {/* ── Mobile phone row ── */}
       <div
         className="md:hidden relative flex justify-center items-end"
         style={{ height: 400, marginTop: "3rem" }}
       >
-        {/* Glow */}
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            bottom: -20,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: 360,
-            height: 120,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(ellipse, rgba(185,154,93,0.18) 0%, transparent 70%)",
-            filter: "blur(24px)",
-          }}
-        />
-
         {mobilePhones.map((phone, i) => {
           const sc = mobileScales[i] ?? 0.83;
           const w = Math.round(PHONE_W * sc);
@@ -699,10 +586,7 @@ export default function Hero() {
                   delay: i * 0.28,
                 },
               }}
-              style={{
-                position: "relative",
-                zIndex: i === 1 ? 2 : 1,
-              }}
+              style={{ position: "relative", zIndex: i === 1 ? 2 : 1 }}
             >
               <motion.div
                 initial={{ y: 40, opacity: 0 }}
@@ -718,10 +602,6 @@ export default function Hero() {
                   height: h,
                   transform: `rotate(${mobileRotates[i] ?? 0}deg)`,
                   marginLeft: i > 0 ? -18 : 0,
-                  boxShadow:
-                    i === 1
-                      ? "0 4px 14px rgba(0,0,0,0.38), 0 28px 72px rgba(0,0,0,0.3)"
-                      : "0 2px 8px rgba(0,0,0,0.28), 0 18px 50px rgba(0,0,0,0.2)",
                 }}
               >
                 <TemplateScreen
@@ -737,14 +617,13 @@ export default function Hero() {
         })}
       </div>
 
-      {/* Bottom fade to surface */}
+      {/* Bottom fade */}
       <div
         aria-hidden
         className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
           height: 140,
-          background:
-            "linear-gradient(to bottom, transparent 0%, var(--surface) 100%)",
+          background: "linear-gradient(to bottom, transparent 0%, #F7F7F7 100%)",
           zIndex: 10,
         }}
       />

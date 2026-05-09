@@ -19,7 +19,7 @@ const rows: Row[] = [
 
 export default function Comparison() {
   return (
-    <section id="comparison" className="section" style={{ background: "var(--surface)" }}>
+    <section id="comparison" className="section" style={{ background: "#FFFFFF", borderTop: "1px solid #E2E2E2" }}>
       <div className="section-inner">
 
         {/* Header */}
@@ -38,12 +38,12 @@ export default function Comparison() {
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               fontWeight: 800,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              color: "var(--primary)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.025em",
+              color: "#111111",
               marginBottom: "0.875rem",
             }}
           >
@@ -75,15 +75,15 @@ export default function Comparison() {
           <div
             style={{
               background: "white",
-              border: "1px solid var(--border-gold)",
+              border: "1px solid #E2E2E2",
               borderRadius: 20,
               overflow: "hidden",
-              boxShadow: "0 4px 24px rgba(23,17,14,0.06), 0 0 0 1px rgba(199,161,90,0.06)",
+              boxShadow: "0 1px 4px rgba(0,0,0,0.05)",
             }}
           >
             <table className="w-full min-w-[560px]" style={{ borderCollapse: "collapse" }}>
               <thead>
-                <tr style={{ borderBottom: "1px solid var(--border-gold)" }}>
+                <tr style={{ borderBottom: "1px solid #E2E2E2" }}>
                   <th
                     className="text-left"
                     style={{

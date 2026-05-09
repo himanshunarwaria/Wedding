@@ -35,27 +35,19 @@ export default function Navbar() {
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 right-0 z-50"
         style={{
-          height: 68,
+          height: 64,
           transition:
-            "background 0.28s ease, backdrop-filter 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease",
-          background: isScrolled ? "rgba(248,241,231,0.94)" : "transparent",
-          backdropFilter: isScrolled ? "blur(18px) saturate(1.6)" : "none",
-          WebkitBackdropFilter: isScrolled ? "blur(18px) saturate(1.6)" : "none",
-          borderBottom: isScrolled
-            ? "1px solid var(--border)"
-            : "1px solid transparent",
-          boxShadow: isScrolled
-            ? "0 2px 20px rgba(23,17,14,0.07)"
-            : "none",
+            "background 0.25s ease, backdrop-filter 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease",
+          background: isScrolled ? "rgba(247,247,247,0.96)" : "rgba(247,247,247,0.7)",
+          backdropFilter: "blur(16px) saturate(1.4)",
+          WebkitBackdropFilter: "blur(16px) saturate(1.4)",
+          borderBottom: "1px solid #E2E2E2",
+          boxShadow: isScrolled ? "0 1px 12px rgba(0,0,0,0.06)" : "none",
         }}
       >
         <nav
           className="mx-auto flex items-center justify-between gap-4"
-          style={{
-            maxWidth: 1160,
-            height: "100%",
-            padding: "0 1.25rem",
-          }}
+          style={{ maxWidth: 1160, height: "100%", padding: "0 1.5rem" }}
         >
           {/* ── Logo ── */}
           <a
@@ -64,26 +56,27 @@ export default function Navbar() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center gap-1.5 shrink-0"
+            className="flex items-center gap-2 shrink-0"
             style={{ textDecoration: "none" }}
           >
-            <span
+            {/* Diamond mark */}
+            <div
               style={{
-                color: "var(--gold)",
-                fontSize: "0.8125rem",
-                lineHeight: 1,
+                width: 18,
+                height: 18,
+                background: "#111111",
+                borderRadius: 4,
+                transform: "rotate(45deg)",
                 flexShrink: 0,
               }}
-            >
-              ✦
-            </span>
+            />
             <span
               style={{
                 fontFamily: "var(--font-sans)",
-                fontSize: "1.1875rem",
+                fontSize: "1.125rem",
                 fontWeight: 700,
-                color: "var(--text-main)",
-                letterSpacing: "-0.01em",
+                color: "#111111",
+                letterSpacing: "-0.02em",
               }}
             >
               {BRAND}
@@ -92,7 +85,7 @@ export default function Navbar() {
 
           {/* ── Desktop center links ── */}
           <ul
-            className="hidden md:flex items-center gap-0.5"
+            className="hidden md:flex items-center gap-1"
             style={{ listStyle: "none", margin: 0, padding: 0 }}
           >
             {navLinks.map((link) => (
@@ -101,23 +94,21 @@ export default function Navbar() {
                   onClick={() => handleNav(link.href)}
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "0.9375rem",
+                    fontSize: "0.9rem",
                     fontWeight: 500,
-                    color: "var(--text-muted)",
+                    color: "#666666",
                     background: "transparent",
                     border: "none",
                     cursor: "pointer",
                     padding: "0.5rem 1rem",
                     borderRadius: 100,
-                    transition: "color 0.18s ease",
+                    transition: "color 0.15s ease",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color =
-                      "var(--text-main)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#111111";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color =
-                      "var(--text-muted)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#666666";
                   }}
                 >
                   {link.label}
@@ -131,9 +122,9 @@ export default function Navbar() {
             <button
               onClick={() => handleNav("#templates")}
               className="btn-primary"
-              style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem" }}
+              style={{ fontSize: "0.875rem", padding: "0.5625rem 1.25rem" }}
             >
-              Explore Templates
+              Choose a template
             </button>
           </div>
 
@@ -144,17 +135,17 @@ export default function Navbar() {
             aria-label="Toggle navigation menu"
             style={{
               background: "none",
-              border: "none",
+              border: "1px solid #E2E2E2",
+              borderRadius: 10,
               cursor: "pointer",
-              color: "var(--primary)",
+              color: "#111111",
               padding: "0.375rem",
-              borderRadius: 8,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </nav>
       </motion.header>
@@ -166,24 +157,20 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-x-0 z-40 md:hidden"
             style={{
-              top: 68,
-              background: "rgba(248,241,231,0.97)",
+              top: 64,
+              background: "rgba(247,247,247,0.98)",
               backdropFilter: "blur(20px)",
               WebkitBackdropFilter: "blur(20px)",
-              borderBottom: "1px solid var(--border)",
-              boxShadow: "0 8px 32px rgba(23,17,14,0.09)",
+              borderBottom: "1px solid #E2E2E2",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.07)",
             }}
           >
             <div
               className="mx-auto flex flex-col"
-              style={{
-                maxWidth: 1160,
-                padding: "1.25rem 1.25rem 1.5rem",
-                gap: "0.25rem",
-              }}
+              style={{ maxWidth: 1160, padding: "1.125rem 1.5rem 1.5rem", gap: "0.125rem" }}
             >
               {navLinks.map((link) => (
                 <button
@@ -191,24 +178,22 @@ export default function Navbar() {
                   onClick={() => handleNav(link.href)}
                   style={{
                     fontFamily: "var(--font-sans)",
-                    fontSize: "1.0625rem",
+                    fontSize: "1rem",
                     fontWeight: 500,
-                    color: "var(--text-main)",
+                    color: "#111111",
                     background: "transparent",
                     border: "none",
-                    borderBottom: "1px solid var(--border)",
+                    borderBottom: "1px solid #E2E2E2",
                     cursor: "pointer",
                     textAlign: "left",
-                    padding: "0.875rem 0.5rem",
-                    transition: "color 0.16s ease",
+                    padding: "0.875rem 0.25rem",
+                    transition: "color 0.15s ease",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color =
-                      "var(--gold)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#666666";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color =
-                      "var(--text-main)";
+                    (e.currentTarget as HTMLButtonElement).style.color = "#111111";
                   }}
                 >
                   {link.label}
@@ -220,7 +205,7 @@ export default function Navbar() {
                   className="btn-primary"
                   style={{ width: "100%", justifyContent: "center" }}
                 >
-                  Explore Templates
+                  Choose a template
                 </button>
               </div>
             </div>

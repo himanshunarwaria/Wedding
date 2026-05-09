@@ -8,18 +8,18 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
     <div
       className="flex-shrink-0"
       style={{
-        width: 318,
+        width: 308,
         background: "white",
-        borderRadius: 18,
+        borderRadius: 16,
         overflow: "hidden",
-        border: "1px solid var(--border-gold)",
-        boxShadow: "0 2px 12px rgba(23,17,14,0.07), 0 8px 32px rgba(23,17,14,0.05)",
+        border: "1px solid #E2E2E2",
+        boxShadow: "0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04)",
       }}
     >
-      {/* Screenshot-style app header */}
+      {/* Card header — dark, screenshot-style */}
       <div
         style={{
-          background: "var(--primary)",
+          background: "#111111",
           padding: "0.75rem 1rem",
           display: "flex",
           alignItems: "center",
@@ -29,11 +29,11 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
         {/* Avatar */}
         <div
           style={{
-            width: 36,
-            height: 36,
+            width: 34,
+            height: 34,
             borderRadius: "50%",
-            background: "rgba(255,255,255,0.15)",
-            border: "1.5px solid rgba(199,161,90,0.5)",
+            background: "rgba(255,255,255,0.1)",
+            border: "1.5px solid rgba(255,255,255,0.2)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -42,10 +42,10 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
         >
           <span
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "0.75rem",
-              fontWeight: 600,
-              color: "var(--gold)",
+              fontWeight: 700,
+              color: "white",
             }}
           >
             {t.initials}
@@ -56,8 +56,8 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
         <div className="flex-1 min-w-0">
           <p
             style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.9375rem",
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.875rem",
               fontWeight: 600,
               color: "white",
               lineHeight: 1.2,
@@ -69,7 +69,7 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "0.6875rem",
-              color: "rgba(255,255,255,0.62)",
+              color: "rgba(255,255,255,0.5)",
               lineHeight: 1,
               marginTop: 2,
             }}
@@ -81,7 +81,7 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
         {/* Stars */}
         <div className="flex gap-0.5 flex-shrink-0">
           {Array.from({ length: t.stars }).map((_, i) => (
-            <span key={i} style={{ color: "var(--gold)", fontSize: "0.6875rem" }}>
+            <span key={i} style={{ color: "#CCCCCC", fontSize: "0.625rem" }}>
               ★
             </span>
           ))}
@@ -89,19 +89,14 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
       </div>
 
       {/* Quote body */}
-      <div
-        style={{
-          padding: "1.125rem 1.25rem 1rem",
-          background: "white",
-        }}
-      >
-        {/* Large decorative quote */}
+      <div style={{ padding: "1.125rem 1.25rem 1rem", background: "white" }}>
+        {/* Decorative quote mark */}
         <div
           style={{
-            fontFamily: "var(--font-serif)",
-            fontSize: "3rem",
+            fontFamily: "var(--font-sans)",
+            fontSize: "2.5rem",
             lineHeight: 0.6,
-            color: "var(--gold-soft)",
+            color: "#E2E2E2",
             marginBottom: "0.5rem",
             userSelect: "none",
           }}
@@ -115,7 +110,7 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
             fontFamily: "var(--font-sans)",
             fontStyle: "italic",
             fontSize: "0.9rem",
-            color: "var(--text-main)",
+            color: "#333333",
             lineHeight: 1.68,
             marginBottom: "1rem",
           }}
@@ -129,15 +124,15 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[0] }) {
             display: "inline-flex",
             alignItems: "center",
             gap: "0.375rem",
-            background: "var(--gold-faint)",
-            border: "1px solid var(--border-gold)",
+            background: "#F5F5F5",
+            border: "1px solid #E2E2E2",
             borderRadius: 100,
             padding: "0.2rem 0.75rem",
             fontFamily: "var(--font-sans)",
             fontSize: "0.6875rem",
             fontWeight: 600,
-            color: "#8B5E1A",
-            letterSpacing: "0.04em",
+            color: "#666666",
+            letterSpacing: "0.03em",
           }}
         >
           ✦ {t.templateUsed}
@@ -153,8 +148,8 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="section grain overflow-hidden"
-      style={{ background: "var(--surface-warm)" }}
+      className="section overflow-hidden"
+      style={{ background: "#F7F7F7", borderTop: "1px solid #E2E2E2" }}
     >
       {/* Header */}
       <div className="section-inner mb-14">
@@ -173,12 +168,12 @@ export default function Testimonials() {
             viewport={{ once: true }}
             transition={{ delay: 0.08, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             style={{
-              fontFamily: "var(--font-serif)",
+              fontFamily: "var(--font-sans)",
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               fontWeight: 800,
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em",
-              color: "var(--primary)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.025em",
+              color: "#111111",
               marginBottom: "0.875rem",
             }}
           >
@@ -192,7 +187,7 @@ export default function Testimonials() {
             style={{
               fontFamily: "var(--font-sans)",
               fontSize: "1.0625rem",
-              color: "var(--text-muted)",
+              color: "#666666",
             }}
           >
             Real couples. Real invites. One unforgettable link.
@@ -222,7 +217,6 @@ export default function Testimonials() {
         viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.12 }}
         className="marquee-wrapper pt-5"
-        style={{ "--marquee-duration": "24s" } as React.CSSProperties}
       >
         <div className="marquee-track-rev" style={{ gap: "1.25rem" }}>
           {[...doubled].reverse().map((t, i) => (
