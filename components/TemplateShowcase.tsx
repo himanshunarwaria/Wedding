@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 /* ─────────────────────────────────────────────────────────────────
    Inline data
@@ -499,6 +500,8 @@ function TemplateCard({
   index: number;
 }) {
   const [shadow, setShadow] = useState("0 2px 12px rgba(0,0,0,0.05)");
+  const router = useRouter();
+  const href = `/templates/${template.id}`;
 
   return (
     <motion.div
@@ -513,6 +516,7 @@ function TemplateCard({
       whileHover={{ y: -4 }}
     >
       <div
+        onClick={() => router.push(href)}
         style={{
           background: "#FFFFFF",
           border: "1px solid #E2E2E2",
@@ -554,7 +558,7 @@ function TemplateCard({
             {template.category}
           </div>
 
-          {/* Eye button */}
+          {/* Eye button — opens template in new tab */}
           <button
             style={{
               position: "absolute",
@@ -571,7 +575,10 @@ function TemplateCard({
               justifyContent: "center",
               cursor: "pointer",
             }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+              window.open(href, "_blank");
+            }}
           >
             <Eye size={13} style={{ color: "#666" }} />
           </button>
